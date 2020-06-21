@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/visahackathon/static/css/main.5f361e03.chunk.css",
+    "main.js": "/visahackathon/static/js/main.ff95e916.chunk.js",
+    "main.js.map": "/visahackathon/static/js/main.ff95e916.chunk.js.map",
+    "runtime-main.js": "/visahackathon/static/js/runtime-main.647438cd.js",
+    "runtime-main.js.map": "/visahackathon/static/js/runtime-main.647438cd.js.map",
+    "static/js/2.c529b2f4.chunk.js": "/visahackathon/static/js/2.c529b2f4.chunk.js",
+    "static/js/2.c529b2f4.chunk.js.map": "/visahackathon/static/js/2.c529b2f4.chunk.js.map",
+    "index.html": "/visahackathon/index.html",
+    "precache-manifest.d159975706e4c1567b980f134de2a30d.js": "/visahackathon/precache-manifest.d159975706e4c1567b980f134de2a30d.js",
+    "service-worker.js": "/visahackathon/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/visahackathon/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.c529b2f4.chunk.js.LICENSE.txt": "/visahackathon/static/js/2.c529b2f4.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/visahackathon/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.647438cd.js",
+    "static/js/2.c529b2f4.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.ff95e916.chunk.js"
+  ]
+}
