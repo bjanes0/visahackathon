@@ -1,0 +1,17 @@
+.carousel-item {
+    height: 450px;
+}
+
+.carousel-caption {
+    top: 100px;
+}
+
+#h2_car {
+    font-size: 50px;
+    color: black;
+}
+
+#p_car {
+    font-size: 30px;
+    color: black;
+}

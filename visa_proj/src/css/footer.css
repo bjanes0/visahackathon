@@ -1,0 +1,11 @@
+.content {
+    position: absolute;
+}
+
+#col_foot {
+    background-color: rgb(46, 43, 43);
+}
+
+#p_foot {
+    color: white;
+}

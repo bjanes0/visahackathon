@@ -1,0 +1,9 @@
+.navbar {
+    background-color: rgb(46, 43, 43);
+}
+.navbar-nav .nav-link {
+    color: white;
+}
+.navbar:hover .nav-link:hover {
+    color: black;
+}
