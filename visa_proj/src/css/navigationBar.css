@@ -1,8 +1,9 @@
 .navbar {
+    width: 100%;
     background-color: rgb(46, 43, 43);
 }
 .navbar-nav .nav-link {
-    color: white;
+    color: black;
 }
 .navbar:hover .nav-link:hover {
     color: black;

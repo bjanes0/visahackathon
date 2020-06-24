@@ -1,3 +1,8 @@
 #create_button {
     background-color: rgb(46, 43, 43);
 }
+
+#top_div {
+    margin: 20px;
+    margin-bottom: 15px;
+}
