@@ -1,5 +1,10 @@
-.content {
+#footer {
     position: absolute;
+    border-top: "1px solid #E7E7E7";
+    left: "0";
+    bottom: "0";
+    right: "0";
+    height: "60px";
 }
 
 #col_foot {

@@ -6,6 +6,10 @@
     top: 100px;
 }
 
+#car_button {
+    background-color: rgb(46, 43, 43);
+}
+
 #h2_car {
     font-size: 50px;
     color: black;
