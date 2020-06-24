@@ -9,9 +9,11 @@
 #h2_car {
     font-size: 50px;
     color: black;
+    text-shadow: -1px -1px white;
 }
 
 #p_car {
     font-size: 30px;
     color: black;
+    text-shadow: -1px -1px white;
 }
