@@ -8,6 +8,7 @@ class GiftManager extends Component {
     render() { 
         return ( 
             <React.Fragment>
+                <div id="manage_card">
                 <Card>
                     <Card.Body>
                         <Card.Title>Gift #1</Card.Title>
@@ -32,6 +33,7 @@ class GiftManager extends Component {
                         </Card.Text>
                     </Card.Body>
                 </Card>
+                </div>
             </React.Fragment>
          );
     }
