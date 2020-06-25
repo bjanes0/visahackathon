@@ -21,8 +21,10 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
+@Component
 public class ApiClient {
 
         private String keyStorePath;
@@ -45,8 +47,12 @@ public class ApiClient {
                 this.keyStorePath = keyStorePath;
         }
 
-        public void setKeyStorePass(String keyStorePath) {
-                this.keyStorePass = keyStorePath;
+        public void setKeyStorePass(String keyStorePass) {
+                this.keyStorePass = keyStorePass;
+        }
+        
+        public void setKeyPassword(String keyPassword) {
+        	this.keyPassword = keyPassword;
         }
 
         public CloseableHttpClient getHttpClient() {
@@ -69,7 +75,7 @@ public class ApiClient {
         }
 
         /* Establishes two way ssl using key store and key password */
-        private void establishSSL() throws NoSuchAlgorithmException, KeyStoreException, 
+        public void establishSSL() throws NoSuchAlgorithmException, KeyStoreException, 
                         UnrecoverableKeyException, CertificateException, IOException, KeyManagementException {
                 //Load client certificate into key store
                 SSLContext sslcontext = SSLContexts.custom()
