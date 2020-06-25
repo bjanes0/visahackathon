@@ -2,6 +2,10 @@
     max-width: 500px;
 }
 
+#log_button {
+    background-color: rgb(46, 43, 43);
+}
+
 #col_login {
     height: 100vh;
 }

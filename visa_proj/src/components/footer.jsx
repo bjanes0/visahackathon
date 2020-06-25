@@ -4,7 +4,7 @@ import '../css/footer.css';
 
 export const Footer = () => (
     <React.Fragment>
-        <Container fluid>
+        <Container fluid id="footer">
             <Row>
                 <Col id="col_foot">
                     <br/>
