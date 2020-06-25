@@ -2,7 +2,7 @@
   "name": "visa_proj",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://nasuru.github.io/visahackathon",
+  "homepage": "http://bjanes0.github.io/visahackathon",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
