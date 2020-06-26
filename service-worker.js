@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/visahackathon/precache-manifest.130940c0bda167e6138d050dea049071.js"
+  "/visahackathon/precache-manifest.afb6d56f7a613babf823ee135c566223.js"
 );
 
 self.addEventListener('message', (event) => {
