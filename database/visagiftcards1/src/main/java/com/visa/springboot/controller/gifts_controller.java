@@ -46,8 +46,10 @@ public class gifts_controller {
 	
 	// save gift giver
 	    
-	    @PostMapping("/gifts")
-	    public gifts createGiftGiver(@Valid @RequestBody gifts gift) {
+	    @PostMapping("/gifts/{userId}")
+	    public gifts createGiftGiver(@PathVariable(value = "userId") String userId, 
+	    		@Valid @RequestBody gifts gift) {
+	    	gift.setUserId(userId);
 	        return giftsRepository.save(gift);
 	    }	    
 	    

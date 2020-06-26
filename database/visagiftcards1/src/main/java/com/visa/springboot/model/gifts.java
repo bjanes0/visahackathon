@@ -35,13 +35,12 @@ public class gifts {
 		super();
 	}
 
-	public gifts(String giftCampaignId, long amount, Date giftDate, String giftMessage, String userId) {
+	public gifts(String giftCampaignId, long amount, Date giftDate, String giftMessage) {
 		super();
 		this.giftCampaignId = giftCampaignId;
 		this.amount = amount;
 		this.giftDate = giftDate;
 		this.giftMessage = giftMessage;
-		this.userId = userId;
 	}
 
 	public String getGiftId() {
