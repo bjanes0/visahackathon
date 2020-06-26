@@ -3,6 +3,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import { Home } from './pages/home';
 import { ManageGifts } from './pages/manageGifts';
 import { Login } from './pages/login';
+import { Register } from './pages/register';
 import { CreateGift } from './pages/createGift';
 import { NavigationBar } from './components/navigationBar';
 import { Footer } from './components/footer';
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/my-gifts" component={ManageGifts} />
           <Route path="/create" component={CreateGift} />
           <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <Route path="/view" component={ViewGift} />
           <Route path="/search" component={Search} />
         </HashRouter>
