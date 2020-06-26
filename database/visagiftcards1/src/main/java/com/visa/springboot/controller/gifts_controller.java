@@ -59,7 +59,7 @@ public class gifts_controller {
 	        gifts gift = giftsRepository.findById(giftid)
 	        .orElseThrow(() -> new ResourceNotFoundException("Gift not found for this id :: " + giftid));
 
-	        gift.setGiftCampaignId(giftDetails.getGiftCampaignId());
+	        //gift.setGiftCampaignId(giftDetails.getGiftCampaignId());
 	        gift.setAmount(giftDetails.getAmount());
 	        gift.setGiftDate(giftDetails.getGiftDate());
 	        gift.setGiftId(giftDetails.getGiftId());
