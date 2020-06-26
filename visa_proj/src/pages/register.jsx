@@ -8,11 +8,11 @@ import * as yup from 'yup'
 const schema = yup.object({
     firstName: yup.string().required(),
     lastName: yup.string().required(),
-    email: yup.string().required(),
-    dob: yup.string().required(),
-    phone: yup.string().required(),
-    password: yup.string().required(),
-    confirmPassword: yup.string().required()
+    email: yup.string().required("Email is required").email("Must be a valid email"),
+    dob: yup.string().required("DOB is required"),
+    phone: yup.string().required("Phone is required"),
+    password: yup.string().required("Password is required"),
+    confirmPassword: yup.string().required("You must confirm your password").oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
 export const Register = () => (
@@ -66,7 +66,7 @@ export const Register = () => (
                                                 onChange={handleChange}
                                                 isValid={touched.lastName && !errors.lastName}
                                             />
-                                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                            <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
                                         </Form.Group>
                                     </Form.Row>
                                     <Form.Row>
@@ -76,9 +76,10 @@ export const Register = () => (
                                                 type="text"
                                                 placeholder="Email"
                                                 name="email"
-                                                value={values.city}
+                                                value={values.email}
                                                 onChange={handleChange}
-                                                isInvalid={!!errors.city}
+                                                isValid={touched.email && !errors.email}
+                                                isInvalid={touched.email && !!errors.email}
                                             />
                                             <Form.Control.Feedback type="invalid">
                                                 {errors.email}
@@ -87,14 +88,15 @@ export const Register = () => (
                                     </Form.Row>
                                     <Form.Row>
                                         <Form.Group as={Col} md="6" controlId="validationFormik04">
-                                            <Form.Label>Date of Birth</Form.Label>
+                                            <Form.Label>Date of Birth (MM-DD-YYYY)</Form.Label>
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Date of Birth"
                                                 name="dob"
                                                 value={values.dob}
                                                 onChange={handleChange}
-                                                isInvalid={!!errors.dob}
+                                                isValid={touched.dob && !errors.dob}
+                                                isInvalid={touched.dob && !!errors.dob}
                                             />
                                             <Form.Control.Feedback type="invalid">
                                                 {errors.dob}
@@ -108,7 +110,8 @@ export const Register = () => (
                                                 name="phone"
                                                 value={values.phone}
                                                 onChange={handleChange}
-                                                isInvalid={!!errors.phone}
+                                                isValid={touched.phone && !errors.phone}
+                                                isInvalid={touched.phone && !!errors.phone}
                                             />
 
                                             <Form.Control.Feedback type="invalid">
@@ -125,7 +128,8 @@ export const Register = () => (
                                                 name="password"
                                                 value={values.password}
                                                 onChange={handleChange}
-                                                isInvalid={!!errors.password}
+                                                isValid={touched.password && !errors.password}
+                                                isInvalid={touched.password && !!errors.password}
                                             />
 
                                             <Form.Control.Feedback type="invalid">
@@ -140,7 +144,8 @@ export const Register = () => (
                                                 name="confirmPassword"
                                                 value={values.confirmPassword}
                                                 onChange={handleChange}
-                                                isInvalid={!!errors.confirmPassword}
+                                                isValid={touched.confirmPassword && !errors.confirmPassword}
+                                                isInvalid={touched.confirmPassword && !!errors.confirmPassword}
                                             />
 
                                             <Form.Control.Feedback type="invalid">
