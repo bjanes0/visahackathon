@@ -75,7 +75,7 @@ export const Register = () => (
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Email"
-                                                name="city"
+                                                name="email"
                                                 value={values.city}
                                                 onChange={handleChange}
                                                 isInvalid={!!errors.city}
@@ -137,11 +137,12 @@ export const Register = () => (
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Confirm Password"
-                                                name="confirm password"
+                                                name="confirmPassword"
                                                 value={values.confirmPassword}
                                                 onChange={handleChange}
                                                 isInvalid={!!errors.confirmPassword}
                                             />
+
                                             <Form.Control.Feedback type="invalid">
                                                 {errors.confirmPassword}
                                             </Form.Control.Feedback>
