@@ -1,0 +1,5 @@
+package com.visa.springboot.repository;
+
+public interface login_info_repository {
+
+}

@@ -1,0 +1,5 @@
+package com.visa.springboot.model;
+
+public class user_info {
+
+}

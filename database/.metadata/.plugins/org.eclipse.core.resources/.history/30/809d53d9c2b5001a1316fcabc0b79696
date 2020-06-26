@@ -1,0 +1,58 @@
+package com.visa.springboot.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "gift_givers")
+public class gift_givers {
+	
+	@Id
+	@Column(name = "userid")
+	private String userId;
+	
+	@Id
+	@Column(name = "giftcampaignid")
+	private String giftCampaignId;
+	
+	public gift_givers() {}
+
+	public gift_givers(String userId, String giftCampaignId) {
+		super();
+		this.userId = userId;
+		this.giftCampaignId = giftCampaignId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getGiftCampaignId() {
+		return giftCampaignId;
+	}
+
+	public void setGiftCampaignId(String giftCampaignId) {
+		this.giftCampaignId = giftCampaignId;
+	}
+
+	@Override
+	public String toString() {
+		return "gift_givers [userId=" + userId + ", giftCampaignId=" + giftCampaignId + "]";
+	}
+	
+	
+	
+	
+	
+	
+
+	
+
+}
