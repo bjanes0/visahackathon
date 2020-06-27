@@ -1,6 +1,7 @@
 package com.visa.springboot.model;
 
 import java.sql.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ public class gift_campaigns {
 	
 	@Id
 	@Column(name = "giftcampaignid")
-	private String giftCampaignId;
+	private String giftCampaignId = UUID.randomUUID().toString();
 	
 	
 	@Column(name = "gifttotal")
@@ -38,10 +39,9 @@ public class gift_campaigns {
 	}
 	
 	
-	public gift_campaigns(String giftCampaignId, int giftTotal, Date startDate, Date endDate, int totalGifters,
+	public gift_campaigns(int giftTotal, Date startDate, Date endDate, int totalGifters,
 			String recipientEmail) {
 		super();
-		this.giftCampaignId = giftCampaignId;
 		this.giftTotal = giftTotal;
 		this.startDate = startDate;
 		this.endDate = endDate;

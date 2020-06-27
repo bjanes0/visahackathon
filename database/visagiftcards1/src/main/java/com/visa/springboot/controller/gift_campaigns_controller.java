@@ -45,21 +45,18 @@ public class gift_campaigns_controller {
 	    }	 
 	
 	// save gift giver
-	    
 	    @PostMapping("/gift_campaigns")
 	    public gift_campaigns createGiftCampaign(@Valid @RequestBody gift_campaigns giftCampaigns) {
 	        return giftCampaignsRepository.save(giftCampaigns);
 	    }	    
 	    
-	// update gift giver
-	    
+	// update gift giver	    
 	    @PutMapping("/gift_campaigns/{giftCampaignId}")
 	    public ResponseEntity<gift_campaigns> updateCampaign(@PathVariable(value = "giftCampaignId") String giftCampaignId,
 	         @Valid @RequestBody gift_campaigns giftCampaignDetails) throws ResourceNotFoundException {
 	        gift_campaigns giftCampaign = giftCampaignsRepository.findById(giftCampaignId)
 	        .orElseThrow(() -> new ResourceNotFoundException("Campaign not found for this id :: " + giftCampaignId));
 
-	        giftCampaign.setGiftCampaignId(giftCampaignDetails.getGiftCampaignId());
 	        giftCampaign.setEndDate(giftCampaignDetails.getEndDate());
 	        giftCampaign.setStartDate(giftCampaignDetails.getStartDate());
 	        giftCampaign.setGiftTotal(giftCampaignDetails.getGiftTotal());
