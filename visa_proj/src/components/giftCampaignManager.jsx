@@ -14,11 +14,11 @@ class GiftManager extends Component {
                             <Card.Title>Gift #1</Card.Title>
                             <Card.Subtitle>Amount Gifted: $30</Card.Subtitle>
                             <Card.Text>
-                                <h6>Sent To: Richard</h6>
+                                <h6>Sent To: Rachel</h6>
                                 <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/create" active>
                                     Manage Gift
                                 </Button>
-                                <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/view" active>
+                                <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/view">
                                     View Gift
                                 </Button>
                             </Card.Text>
@@ -29,7 +29,7 @@ class GiftManager extends Component {
                             <Card.Title>Gift #2</Card.Title>
                             <Card.Subtitle>Amount Gifted: $70</Card.Subtitle>
                             <Card.Text>
-                                <h6>Sending To: Jeremy</h6>
+                                <h6>Sending To: Harold</h6>
                                 <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/create" active>
                                     Manage Gift
                                 </Button>

@@ -4,7 +4,7 @@ import '../css/navigationBar.css';
 
 export const NavigationBar = () => (
     <Navbar className="sticky-top" collapseOnSelect expand="lg" variant="dark">
-        <Navbar.Brand href="/visahackathon/#/">Signed Gift</Navbar.Brand>
+        <Navbar.Brand href="/visahackathon/#/">Visa Touch</Navbar.Brand>
         <Navbar.Toggle area-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
