@@ -49,11 +49,11 @@ public class ApiClient {
         }
 
         public void setKeyStorePath(String keyStorePath) {
-                this.keyStorePath = keyStorePath;
+            this.keyStorePath = keyStorePath;
         }
 
         public void setKeyStorePass(String keyStorePass) {
-                this.keyStorePass = keyStorePass;
+            this.keyStorePass = keyStorePass;
         }
         
         public void setKeyPassword(String keyPassword) {
@@ -61,7 +61,7 @@ public class ApiClient {
         }
 
         public CloseableHttpClient getHttpClient() {
-                return httpClient;
+            return httpClient;
         }
 
         /* Sets the authentication header. Whenever a request is made, this header will be added to the request */
