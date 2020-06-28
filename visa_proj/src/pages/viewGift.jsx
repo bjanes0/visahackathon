@@ -5,7 +5,7 @@ import '../css/viewGift.css';
 
 export const ViewGift = () => (
     <React.Fragment>
-        <h2>View Gift</h2>
+        <h2 class="m-2">View Gift</h2>
         <h1 className="text-center">Gift Name</h1>
         <h3 id="giver-header" className="text-center text-muted">Gift Created by: Giver Name</h3>
         <div class="text-center m-4">
@@ -16,7 +16,7 @@ export const ViewGift = () => (
             <Col><p class="text-left">Opened 6/23/2020</p></Col>
         </Row>
         <div class="text-center m-4">
-            Contribute now: <Button variant="outline-secondary">Click Here!</Button>
+            Gift now: <Button variant="outline-secondary" href="/visahackathon/#/gift">Click Here!</Button>
         </div>
     </React.Fragment >
 )
