@@ -6,11 +6,11 @@ import img1 from '../assets/pic1.jpg';
 export const CreateGift = () => (
     <React.Fragment>
         <div id="create_div">
-            <h2>Create Gift</h2>
+            <h2>Create Gift Campaign</h2>
             <Form >
                 <Form.Group>
-                    <h6>Gift Name</h6>
-                    <Form.Control placeholder="Enter gift name"></Form.Control>
+                    <h6>Gift Campaign Name</h6>
+                    <Form.Control placeholder="Enter gift campaign name"></Form.Control>
                 </Form.Group>
                 <Form.Group>
                     <h6>Recipient Name</h6>

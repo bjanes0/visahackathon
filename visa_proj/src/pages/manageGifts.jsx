@@ -11,7 +11,7 @@ export const ManageGifts = () => (
                 <h2>My Gifts</h2>
                 <Button id="create_button" variant="secondary" size="md" href="/visahackathon/#/create" active>Create New Gift</Button>{' '}
             </div>
-            <Tabs defaultActiveKey="giftCampaignManager" id="uncontrolled-tab-example">
+            <Tabs className="tabsSelector" defaultActiveKey="giftCampaignManager" id="uncontrolled-tab-example">
                 <Tab eventKey="giftCampaignManager" title="Manage Gift Campaigns">
                     <GiftCampaignManager />
                 </Tab>

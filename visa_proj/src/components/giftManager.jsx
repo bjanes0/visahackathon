@@ -11,11 +11,11 @@ class GiftManager extends Component {
                 <div id="manage_card">
                     <Card>
                         <Card.Body>
-                            <Card.Title>Gift #1</Card.Title>
+                            <Card.Title>Gift #3</Card.Title>
                             <Card.Subtitle>Amount Gifted: $30</Card.Subtitle>
                             <Card.Text>
                                 <h6>Sent To: Richard</h6>
-                                <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/create" active>
+                                <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/editGift" active>
                                     Manage Gift
                                 </Button>
                                 <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/view" active>
@@ -26,11 +26,11 @@ class GiftManager extends Component {
                     </Card>
                     <Card>
                         <Card.Body>
-                            <Card.Title>Gift #2</Card.Title>
+                            <Card.Title>Gift #4</Card.Title>
                             <Card.Subtitle>Amount Gifted: $70</Card.Subtitle>
                             <Card.Text>
                                 <h6>Sending To: Jeremy</h6>
-                                <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/create" active>
+                                <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/editGift" active>
                                     Manage Gift
                                 </Button>
                                 <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/view" active>

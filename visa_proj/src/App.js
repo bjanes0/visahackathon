@@ -8,6 +8,9 @@ import { CreateGift } from './pages/createGift';
 import { NavigationBar } from './components/navigationBar';
 import { Footer } from './components/footer';
 import { ViewGift } from './pages/viewGift';
+import { Gift } from './pages/gift';
+import { EditGift } from './pages/editGift'
+import { EditGiftCampaign } from './pages/editGiftCampaign'
 import './App.css';
 import { Search } from './pages/search';
 
@@ -25,6 +28,9 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/view" component={ViewGift} />
           <Route path="/search" component={Search} />
+          <Route path="/gift" component={Gift} />
+          <Route path="/editGiftCampaign" component={EditGiftCampaign} />
+          <Route path="/editGift" component={EditGift} />
         </HashRouter>
         <Footer />
       </React.Fragment>

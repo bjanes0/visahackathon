@@ -16,7 +16,7 @@ export const ViewGift = () => (
             <Col><p class="text-left">Opened 6/23/2020</p></Col>
         </Row>
         <div class="text-center m-4">
-            Gift now: <Button variant="outline-secondary">Click Here!</Button>
+            Gift now: <Button variant="outline-secondary" href="/visahackathon/#/gift">Click Here!</Button>
         </div>
     </React.Fragment >
 )
