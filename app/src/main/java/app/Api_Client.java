@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
 @Component
-public class ApiClient {
+public class Api_Client {
 
         private String keyStorePath;
         private String keyStorePass;
@@ -39,10 +39,10 @@ public class ApiClient {
         private Header authHeader;
 
         //Create empty api client
-        public ApiClient() {}
+        public Api_Client() {}
 
         //Create api client with given key store
-        public ApiClient(String keyStorePath, String keyStorePass, String keyPassword) {
+        public Api_Client(String keyStorePath, String keyStorePass, String keyPassword) {
                 this.keyPassword = keyPassword;
                 this.keyStorePass = keyStorePass;
                 this.keyStorePath = keyStorePath;
