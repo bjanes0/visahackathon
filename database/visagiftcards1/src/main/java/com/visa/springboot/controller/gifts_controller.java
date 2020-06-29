@@ -33,13 +33,13 @@ public class gifts_controller {
 	// get gift givers
 	
 	@GetMapping("gifts")
-	public List<gifts> getAllGiftGivers(){
+	public List<gifts> getAllGifts(){
 		return this.giftsRepository.findAll();
 	}
 	
 	// get gift givers by id
 	  @GetMapping("/gifts/{giftid}")
-	    public ResponseEntity<gifts> getGiftGIverById(@PathVariable(value = "giftid") String giftid)
+	    public ResponseEntity<gifts> getGiftById(@PathVariable(value = "giftid") String giftid)
 	        throws ResourceNotFoundException {
 	        gifts gift = giftsRepository.findById(giftid)
 	          .orElseThrow(() -> new ResourceNotFoundException("Gift not found for this id :: " + giftid));
@@ -49,7 +49,7 @@ public class gifts_controller {
 	// save gift giver
 	    
 	    @PostMapping("/gifts/{userId}")
-	    public gifts createGiftGiver(@PathVariable(value = "userId") String userId, 
+	    public gifts createGifts(@PathVariable(value = "userId") String userId, 
 	    		@Valid @RequestBody gifts gift) {
 	    	gift.setUserId(userId);
 	        return giftsRepository.save(gift);
