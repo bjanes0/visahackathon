@@ -18,7 +18,7 @@ public class gift_campaigns {
 	@Column(name = "giftcampaignid")
 	private String giftCampaignId = UUID.randomUUID().toString();
 	
-	
+
 	@Column(name = "gifttotal")
 	private int giftTotal;
 	
@@ -34,19 +34,33 @@ public class gift_campaigns {
 	@Column(name = "recipientemail")
 	private String recipientEmail;
 	
+	@Column(name = "giftcampaignname")
+	private String giftCampaignName;
+	
 	public gift_campaigns() {
 		super();
 	}
 	
 	
-	public gift_campaigns(int giftTotal, Date startDate, Date endDate, int totalGifters,
+	public gift_campaigns(String giftCampaignName, int giftTotal, Date startDate, Date endDate, int totalGifters,
 			String recipientEmail) {
 		super();
+		
+		this.giftCampaignName = giftCampaignName;
 		this.giftTotal = giftTotal;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.totalGifters = totalGifters;
 		this.recipientEmail = recipientEmail;
+	}
+	
+	public String getGiftCampaignName() {
+		return giftCampaignName;
+	}
+
+
+	public void setGiftCampaignName(String giftCampaignName) {
+		this.giftCampaignName = giftCampaignName;
 	}
 
 
@@ -108,15 +122,17 @@ public class gift_campaigns {
 	public void setRecipientEmail(String recipientEmail) {
 		this.recipientEmail = recipientEmail;
 	}
-
-
+	
 	@Override
 	public String toString() {
 		return "gift_campaigns [giftCampaignId=" + giftCampaignId + ", giftTotal=" + giftTotal + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", totalGifters=" + totalGifters + ", recipientEmail="
-				+ recipientEmail + "]";
+				+ recipientEmail + ", giftCampaignName=" + giftCampaignName + "]";
 	}
-	
+
+
+
+
 	
 	
 	

@@ -30,14 +30,14 @@ public class gift_campaigns_controller {
 	
 	@Autowired
 	private gift_campaigns_repository giftCampaignsRepository;
-	// get gift givers
 	
+	// get gift campaigns
 	@GetMapping("gift_campaigns")
 	public List<gift_campaigns> getAllGiftCampaigns(){
 		return this.giftCampaignsRepository.findAll();
 	}
 	
-	// get gift givers by id
+	// get gift campaign by id
 	  @GetMapping("/gift_campaigns/{giftCampaignId}")
 	    public ResponseEntity<gift_campaigns> getGiftCampaignById(@PathVariable(value = "giftCampaignId") String giftCampaignId)
 	        throws ResourceNotFoundException {
@@ -46,24 +46,26 @@ public class gift_campaigns_controller {
 	        return ResponseEntity.ok().body(giftCampaign);
 	    }	 
 	
-	// save gift giver
+	// save gift campaign
 	    @PostMapping("/gift_campaigns")
 	    public gift_campaigns createGiftCampaign(@Valid @RequestBody gift_campaigns giftCampaigns) {
 	        return giftCampaignsRepository.save(giftCampaigns);
 	    }	    
 	    
-	// update gift giver	    
+	// update gift campaign	    
 	    @PutMapping("/gift_campaigns/{giftCampaignId}")
 	    public ResponseEntity<gift_campaigns> updateCampaign(@PathVariable(value = "giftCampaignId") String giftCampaignId,
 	         @Valid @RequestBody gift_campaigns giftCampaignDetails) throws ResourceNotFoundException {
 	        gift_campaigns giftCampaign = giftCampaignsRepository.findById(giftCampaignId)
 	        .orElseThrow(() -> new ResourceNotFoundException("Campaign not found for this id :: " + giftCampaignId));
 
+	        //giftCampaign.setGiftCampaignId(giftCampaignDetails.getGiftCampaignId());
 	        giftCampaign.setEndDate(giftCampaignDetails.getEndDate());
 	        giftCampaign.setStartDate(giftCampaignDetails.getStartDate());
 	        giftCampaign.setGiftTotal(giftCampaignDetails.getGiftTotal());
 	        giftCampaign.setRecipientEmail(giftCampaignDetails.getRecipientEmail());
 	        giftCampaign.setTotalGifters(giftCampaignDetails.getTotalGifters());
+	        giftCampaign.setGiftCampaignName(giftCampaignDetails.getGiftCampaignName());
 	    
 	        final gift_campaigns updatedGiftCampaign = giftCampaignsRepository.save(giftCampaign);
 	        return ResponseEntity.ok(updatedGiftCampaign);
@@ -71,8 +73,7 @@ public class gift_campaigns_controller {
 	    
 	   
 	    
-	// delete gift giver
-	    
+	// delete gift campaign	    
 	    @DeleteMapping("/gift_campaigns/{giftCampaignId}")
 	    public Map<String, Boolean> deleteCampaign(@PathVariable(value = "giftCampaignId") String giftCampaignId)
 	         throws ResourceNotFoundException {
