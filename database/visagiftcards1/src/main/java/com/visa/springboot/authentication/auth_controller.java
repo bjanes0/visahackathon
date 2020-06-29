@@ -2,6 +2,7 @@ package com.visa.springboot.authentication;
 
 import com.visa.springboot.authentication.services.MyUserDetailsService;
 import com.visa.springboot.authentication.util.JwtUtil;
+import com.visa.springboot.controller.user_info_controller;
 import com.visa.springboot.model.user_info;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,9 @@ public class auth_controller {
     @Autowired
     private JwtUtil jwtTokenUtil;
 
+    @Autowired
+    private user_info_controller userInfoController;
+
     @RequestMapping({"/hello"})
     public String hello() {
         return "Hello World";
@@ -38,7 +42,7 @@ public class auth_controller {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody authentication_request authenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), userInfoController.convert(authenticationRequest.getPassword()))
             );
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password", e);

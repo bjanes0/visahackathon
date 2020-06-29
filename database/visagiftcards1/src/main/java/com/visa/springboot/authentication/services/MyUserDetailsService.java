@@ -1,5 +1,6 @@
 package com.visa.springboot.authentication.services;
 
+import com.visa.springboot.controller.user_info_controller;
 import com.visa.springboot.model.user_info;
 import com.visa.springboot.repository.user_info_repository;
 import org.springframework.beans.factory.annotation.Autowired;

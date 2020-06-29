@@ -81,9 +81,7 @@ public class user_info_controller {
 	    
 	        final user_info updatedUserInfo = userInfoRepository.save(userInfo);
 	        return ResponseEntity.ok(updatedUserInfo);
-	    }	    
-	    
-	   
+	    }
 	    
 	// delete a user 
 	    @DeleteMapping("/user_id/{userId}")

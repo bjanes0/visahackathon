@@ -113,17 +113,5 @@ public class user_info {
 		return "user_info [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob
 				+ ", telephone=" + Arrays.toString(telephone) + ", email=" + email + ", password=" + password + "]";
 	}
-	
-	
-  
-	
-	
-	
-	
-
-
-	
-	
-
 }
 
