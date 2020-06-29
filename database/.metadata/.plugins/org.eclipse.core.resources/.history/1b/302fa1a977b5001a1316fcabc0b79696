@@ -1,5 +1,0 @@
-package com.visa.springboot.controller;
-
-public class payment_info_controller {
-
-}

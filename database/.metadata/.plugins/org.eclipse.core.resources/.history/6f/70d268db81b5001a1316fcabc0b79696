@@ -1,5 +1,0 @@
-package com.visa.springboot.controller;
-
-public interface login_info_controller {
-
-}

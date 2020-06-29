@@ -1,6 +1,0 @@
-package com.visa.springboot.repository;
-
-@Repository
-public interface payment_info_repository extends JpaRepository<payment_info,Long>{
-
-}

@@ -13,10 +13,7 @@ export const Search = () => (
                     <Form.Control type="search" placeholder="Search gifts" />
                 </Form.Group>
             </Form>
-        </div>
-        <div id="search_results">
-            <p>'2' Gifts Found</p>
-            <SearchResults />
+            <SearchResults/>
         </div>
     </React.Fragment >
 )

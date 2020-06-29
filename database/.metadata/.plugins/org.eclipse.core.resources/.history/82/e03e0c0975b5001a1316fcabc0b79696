@@ -1,5 +1,0 @@
-package com.visa.springboot.repository;
-
-public interface payment_info_repository {
-
-}
