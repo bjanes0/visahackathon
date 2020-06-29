@@ -3,7 +3,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import { Home } from './pages/home';
 import { ManageGifts } from './pages/manageGifts';
 import  Login  from './pages/login';
-import { Register } from './pages/register';
+import  Register  from './pages/register';
 import  CreateGift  from './pages/createGift';
 import  NavigationBar  from './components/navigationBar';
 import { Footer } from './components/footer';

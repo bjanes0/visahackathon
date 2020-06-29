@@ -10,21 +10,10 @@ class Login extends Component {
 
         this.state = {
             username: '',
-            password: '',
-            jwt: ''
+            password: ''
         };
         this.change = this.change.bind(this);
         this.submit = this.submit.bind(this);
-    }
-
-    componentDidMount() {
-        const jwt = localStorage.getItem("jwt");
-        axios.get("http://localhost:8080/auth_user", { headers: { Authorization : `Bearer ${jwt}` }})
-        .then(res => this.setState({
-            user: res.data
-        })).catch(err => {
-            localStorage.removeItem("jwt");
-        })
     }
 
     change(e) {
@@ -40,10 +29,6 @@ class Login extends Component {
             password: this.state.password
         }).then(res => {localStorage.setItem('jwt', res.data.jwt);
             this.props.history.push("/")});
-    }
-
-    reloadPage () {
-        window.location.reload()
     }
 
     render() {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Container, Row, Col, InputGroup } from 'react-bootstrap';
 import '../css/register.css';
 import { Formik } from 'formik';
+import axios from 'axios';
 import * as yup from 'yup'
 
 
@@ -15,7 +16,44 @@ const schema = yup.object({
     confirmPassword: yup.string().required("You must confirm your password").oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
-export const Register = () => (
+class Register extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            firstName: '',
+            lastName: '',
+            dob: '',
+            telephone: '',
+            email: '',
+            password: ''
+        };
+        this.change = this.change.bind(this);
+        this.submit = this.submit.bind(this);
+    }
+
+    change(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    submit(e) {
+        e.preventDefault();
+        axios.post("http://localhost:8080/api/v1/user_info", {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            dob: this.state.dob,
+            telephone: this.state.telephone,
+            email: this.state.email,
+            password: this.state.password
+        })
+            this.props.history.push("/");
+    }
+
+    render() {
+    return(
     <React.Fragment>
         <Container fluid>
             <Row>
@@ -42,7 +80,7 @@ export const Register = () => (
                             isValid,
                             errors,
                         }) => (
-                                <Form noValidate onSubmit={handleSubmit}>
+                                <Form noValidate onSubmit={e => this.submit(e)}>
                                     <Form.Row>
                                         <Form.Group as={Col} md="6" controlId="validationFormik01">
                                             <Form.Label>First name</Form.Label>
@@ -50,8 +88,8 @@ export const Register = () => (
                                                 type="text"
                                                 placeholder="First name"
                                                 name="firstName"
-                                                value={values.firstName}
-                                                onChange={handleChange}
+                                                value={this.state.firstName}
+                                                onChange={e => this.change(e)}
                                                 isValid={touched.firstName && !errors.firstName}
                                             />
                                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -62,8 +100,8 @@ export const Register = () => (
                                                 type="text"
                                                 placeholder="Last name"
                                                 name="lastName"
-                                                value={values.lastName}
-                                                onChange={handleChange}
+                                                value={this.state.lastName}
+                                                onChange={e => this.change(e)}
                                                 isValid={touched.lastName && !errors.lastName}
                                             />
                                             <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
@@ -76,8 +114,8 @@ export const Register = () => (
                                                 type="text"
                                                 placeholder="Email"
                                                 name="email"
-                                                value={values.email}
-                                                onChange={handleChange}
+                                                value={this.state.email}
+                                                onChange={e => this.change(e)}
                                                 isValid={touched.email && !errors.email}
                                                 isInvalid={touched.email && !!errors.email}
                                             />
@@ -93,8 +131,8 @@ export const Register = () => (
                                                 type="text"
                                                 placeholder="Date of Birth"
                                                 name="dob"
-                                                value={values.dob}
-                                                onChange={handleChange}
+                                                value={this.state.dob}
+                                                onChange={e => this.change(e)}
                                                 isValid={touched.dob && !errors.dob}
                                                 isInvalid={touched.dob && !!errors.dob}
                                             />
@@ -108,8 +146,8 @@ export const Register = () => (
                                                 type="text"
                                                 placeholder="Phone #"
                                                 name="phone"
-                                                value={values.phone}
-                                                onChange={handleChange}
+                                                value={this.state.phone}
+                                                onChange={e => this.change(e)}
                                                 isValid={touched.phone && !errors.phone}
                                                 isInvalid={touched.phone && !!errors.phone}
                                             />
@@ -123,11 +161,11 @@ export const Register = () => (
                                         <Form.Group as={Col} md="6" controlId="validationFormik06">
                                             <Form.Label>Password</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                type="password"
                                                 placeholder="Password"
                                                 name="password"
-                                                value={values.password}
-                                                onChange={handleChange}
+                                                value={this.state.password}
+                                                onChange={e => this.change(e)}
                                                 isValid={touched.password && !errors.password}
                                                 isInvalid={touched.password && !!errors.password}
                                             />
@@ -139,11 +177,11 @@ export const Register = () => (
                                         <Form.Group as={Col} md="6" controlId="validationFormik07">
                                             <Form.Label>Confirm Password</Form.Label>
                                             <Form.Control
-                                                type="text"
+                                                type="password"
                                                 placeholder="Confirm Password"
                                                 name="confirmPassword"
                                                 value={values.confirmPassword}
-                                                onChange={handleChange}
+                                                onChange={e => this.change(e)}
                                                 isValid={touched.confirmPassword && !errors.confirmPassword}
                                                 isInvalid={touched.confirmPassword && !!errors.confirmPassword}
                                             />
@@ -162,4 +200,6 @@ export const Register = () => (
             </Row>
         </Container>
     </React.Fragment>
-)
+    )}}
+
+export default Register;
