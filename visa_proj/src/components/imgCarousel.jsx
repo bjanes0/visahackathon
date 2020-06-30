@@ -12,7 +12,7 @@ export const ImgCarousel = () => (
                 alt="First Slide" />
             <Carousel.Caption>
                 <h2 id="h2_car">Give a gift worth giving</h2>
-                <p id="p_car">Give your friend a nice present
+                <p id="p_car">Visa Touch makes it easy to add a special touch to a virtual gift
                 </p>
                 <Button id="car_button" variant="secondary" size="lg" href="/visahackathon/#/my-gifts" active>Make a Gift</Button>{' '}
             </Carousel.Caption>
@@ -24,7 +24,7 @@ export const ImgCarousel = () => (
                 <h2 id="h2_car">Your friend wants a gift really bad</h2>
                 <p id="p_car">So what are you waiting for?
                 </p>
-                <Button id="car_button" variant="secondary" size="lg" href="/visahackathon/#/my-gifts" active>I Said Make a Gift</Button>{' '}
+                <Button id="car_button" variant="secondary" size="lg" href="/visahackathon/#/my-gifts" active>Make a Gift</Button>{' '}
             </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -34,7 +34,7 @@ export const ImgCarousel = () => (
                 <h2 id="h2_car">Please make a gift</h2>
                 <p id="p_car">you can use this button right here
                 </p>
-                <Button id="car_button" variant="secondary" size="lg" href="/visahackathon/#/my-gifts" active>Make a Gift Now</Button>{' '}
+                <Button id="car_button" variant="secondary" size="lg" href="/visahackathon/#/my-gifts" active>Make a Gift Now!</Button>{' '}
             </Carousel.Caption>
         </Carousel.Item>
     </Carousel>

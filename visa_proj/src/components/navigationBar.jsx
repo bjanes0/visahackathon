@@ -12,13 +12,13 @@ class NavigationBar extends Component {
     }
 
     componentDidMount() {
-        if(localStorage.length > 0){
+        if (localStorage.length > 0) {
             this.removeLogin();
-            this.setState({login: "blank"});
+            this.setState({ login: "blank" });
         }
-        else if(this.state.login === "show"){
+        else if (this.state.login === "show") {
             this.removeLogout();
-            this.setState({login: "show"});
+            this.setState({ login: "show" });
         }
     }
 
@@ -36,27 +36,28 @@ class NavigationBar extends Component {
         localStorage.removeItem("jwt");
     }
 
-    reloadPage () {
+    reloadPage() {
         window.location.reload()
     }
 
     render() {
-        
-        return(
-    <Navbar className="sticky-top" collapseOnSelect expand="lg" variant="dark">
-        <Navbar.Brand href="/visahackathon/#/">Visa Touch</Navbar.Brand>
-        <Navbar.Toggle area-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
-                <Nav.Item><Nav.Link href="/visahackathon/#/">Home</Nav.Link></Nav.Item>
-                <Nav.Item><Nav.Link href="/visahackathon/#/my-gifts">My Gifts</Nav.Link></Nav.Item>
-                <Nav.Item><Nav.Link href="/visahackathon/#/search">Search Gifts</Nav.Link></Nav.Item>
-                <Nav.Item id="login"><Nav.Link href="/visahackathon/#/login">Login</Nav.Link></Nav.Item>
-                <Nav.Item id="logout" onClick={this.changeLoginShow}><Nav.Link href="/visahackathon/#/">Logout</Nav.Link></Nav.Item>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
-        )};
+
+        return (
+            <Navbar className="sticky-top" collapseOnSelect expand="lg" variant="dark">
+                <Navbar.Brand href="/visahackathon/#/">Visa Touch</Navbar.Brand>
+                <Navbar.Toggle area-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ml-auto">
+                        <Nav.Item><Nav.Link href="/visahackathon/#/">Home</Nav.Link></Nav.Item>
+                        <Nav.Item><Nav.Link href="/visahackathon/#/my-gifts">My Gifts</Nav.Link></Nav.Item>
+                        <Nav.Item><Nav.Link href="/visahackathon/#/search">Search Gifts</Nav.Link></Nav.Item>
+                        <Nav.Item id="login"><Nav.Link href="/visahackathon/#/login">Log In</Nav.Link></Nav.Item>
+                        <Nav.Item id="logout" onClick={this.changeLoginShow}><Nav.Link href="/visahackathon/#/">Logout</Nav.Link></Nav.Item>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        )
+    };
 }
 
 export default NavigationBar;
