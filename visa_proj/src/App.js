@@ -34,6 +34,7 @@ class App extends Component {
             <Route path="/gift" component={Gift} />
             <Route path="/editGiftCampaign" component={EditGiftCampaign} />
             <Route path="/editGift" component={EditGift} />
+            <Route path="/templates" component={GiftTemplates} />
           </AuthenticatedComponent>
         </HashRouter>
         <Footer />

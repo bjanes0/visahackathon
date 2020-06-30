@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 import '../css/giftManager.css';
-import img1 from '../assets/pic1.jpg'
 
 class GiftManager extends Component {
 

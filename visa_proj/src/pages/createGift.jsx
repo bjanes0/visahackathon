@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { Button, Row, Col, Form, Card } from 'react-bootstrap';
 import '../css/createGift.css';
 import img1 from '../assets/pic1.jpg';
+import img2 from '../assets/pic2.png';
+import img3 from '../assets/pic3.jpg'
 
 class CreateGift extends Component {
     
     constructor(props) {
         super(props);
-        this.state = this.initialState;
+        this.state = {
+            giftCampaignName: '', 
+            recipientEmail: ''
+        };
         this.giftChange = this.giftChange.bind(this);
         this.addGift = this.addGift.bind(this);
-    }
-
-    initialState = {
-        giftCampaignName: '', recipientEmail: ''
     }
 
     giftChange = event => {
@@ -37,16 +39,41 @@ class CreateGift extends Component {
         axios.post("http://localhost:8080/api/v1/gift_campaigns/", Gift, { headers: { Authorization : `Bearer ${jwt}` }})
             .then(response => {
                 if(response.data != null) {
-                    this.setState(this.initialState);
+                    this.props.history.push("/my-gifts");
                     alert("Gift Campaign Saved Successfully!");
+                    this.reloadPage();
                 }
             })
-        axios.post("")
+    }
+
+    compareImages(imgPath) {
+        if(imgPath === '../assets/pic1.jpg'){
+            return img1;
+        }
+        if(imgPath === '../assets/pic2.png'){
+            return img2;
+        }
+        if(imgPath === '../assets/pic3.jpg'){
+            return img3;
+        }
+    }
+
+    componentDidMount() {
+        const {newData} = this.props.location;
+        if(newData !== undefined){
+            this.setState({giftCampaignName: newData.giftCampaignName, recipientEmail: newData.recipientEmail})
+            document.getElementById("tempImg").src = this.compareImages(newData.choice);
+        }
+    }
+
+    reloadPage () {
+        window.location.reload()
     }
 
     render () {
-
+    
         const { giftCampaignName, recipientEmail} = this.state;
+
     return (
     <React.Fragment>
         <div id="create_div">
@@ -62,22 +89,19 @@ class CreateGift extends Component {
                 </Form.Group>
                 <Row>
                     <Col>
-                        <Card id="img">
+                        <Card >
                             <Card.Body>
-                                <Card.Img src={img1} />
+                                <Card.Img id="tempImg" src={img1} />
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col>
                         <Form.Group>
+                        <Link id="temp_butt" to={{pathname: "templates", data: this.state}}>
                             <Button id="create_gift_button" variant="secondary" size="lg">
                                 Choose Template
                             </Button>
-                        </Form.Group>
-                        <Form.Group>
-                            <Button id="create_gift_button" variant="secondary" size="lg">
-                                Edit Card
-                            </Button>
+                        </Link>
                         </Form.Group>
                         <Form.Group>
                             <Button onClick={this.addGift} id="next_button" variant="secondary" size="lg">
