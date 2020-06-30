@@ -14,7 +14,7 @@ class CreateGift extends Component {
     }
 
     initialState = {
-        giftMessage: '', amount: '', recipientEmail: ''
+        giftCampaignName: '', recipientEmail: ''
     }
 
     giftChange = event => {
@@ -27,18 +27,18 @@ class CreateGift extends Component {
         event.preventDefault();
 
         const Gift = {
-            giftMessage: this.state.giftMessage,
-            amount: this.state.amount,
-            recipientEmail: this.state.recipientEmail
+            giftCampaignName: this.state.giftCampaignName,
+            recipientEmail: this.state.recipientEmail,
+            startDate: new Date()
         };
 
         const jwt = localStorage.getItem("jwt");
 
-        axios.post("http://localhost:8080/api/v1/gifts/", Gift, { headers: { Authorization : `Bearer ${jwt}` }})
+        axios.post("http://localhost:8080/api/v1/gift_campaigns/", Gift, { headers: { Authorization : `Bearer ${jwt}` }})
             .then(response => {
                 if(response.data != null) {
                     this.setState(this.initialState);
-                    alert("Gift Saved Successfully!");
+                    alert("Gift Campaign Saved Successfully!");
                 }
             })
         axios.post("")
@@ -46,7 +46,7 @@ class CreateGift extends Component {
 
     render () {
 
-        const {giftMessage, amount, recipientEmail} = this.state;
+        const { giftCampaignName, recipientEmail} = this.state;
     return (
     <React.Fragment>
         <div id="create_div">
@@ -54,23 +54,11 @@ class CreateGift extends Component {
             <Form >
                 <Form.Group>
                 <h6>Gift Campaign Name</h6>
-                    <Form.Control placeholder="Enter gift campaign name"></Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <h6>Recipient Name</h6>
-                    <Form.Control placeholder="Enter recipient name"></Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <h6>Gift Message</h6>
-                    <Form.Control name="firstName" value={giftMessage} onChange={this.giftChange} placeholder="Enter gift message"></Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <h6>Gift Amount</h6>
-                    <Form.Control name="lastName" value={amount} onChange={this.giftChange} placeholder="Enter amount"></Form.Control>
+                    <Form.Control name="giftCampaignName" value={giftCampaignName} onChange={this.giftChange} placeholder="Enter gift campaign name"></Form.Control>
                 </Form.Group>
                 <Form.Group>
                     <h6>Recipient Email</h6>
-                    <Form.Control name="email" value={recipientEmail} onChange={this.giftChange} placeholder="Enter recipient email"></Form.Control>
+                    <Form.Control name="recipientEmail" value={recipientEmail} onChange={this.giftChange} placeholder="Enter recipient email"></Form.Control>
                 </Form.Group>
                 <Row>
                     <Col>
