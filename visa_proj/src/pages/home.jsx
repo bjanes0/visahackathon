@@ -13,21 +13,21 @@ export const Home = () => (
                 </Col>
                 <Col id="col_home">
                     <br />
-                    <h4>Free Delivery</h4>
+                    <h4>Create a Gift Campaign</h4>
                     <br />
-                    <p>We will deliver it for free, the fee for delivery... free!</p>
+                    <p>Set up a new gift campaign by entering your information, the details of the recipient, and choosing a template to give the card special meaning!</p>
                 </Col>
                 <Col id="col_home">
                     <br />
-                    <h4>Not Illegal</h4>
+                    <h4>Contribute to your Gift Campaign</h4>
                     <br />
-                    <p>We swear that you won't be investigated if you buy from us ;)</p>
+                    <p>Contribute funds to the receipients gift, and invite others to do the same, to create an amazing surprise!</p>
                 </Col>
                 <Col id="col_home">
                     <br />
-                    <h4>Make someone smile!</h4>
+                    <h4>Send your gift to the recipient!</h4>
                     <br />
-                    <p>Who doesn't like free money?</p>
+                    <p>There's nothing better than receiving a gift, delivered quickly and beautifully by email, with messages from family and friends!</p>
                 </Col>
                 <Col id="bgColor">
                 </Col>
