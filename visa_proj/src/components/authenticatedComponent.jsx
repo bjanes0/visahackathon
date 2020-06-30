@@ -26,7 +26,7 @@ class AuthenticatedComponent extends Component {
 
 
     render() {
-        if(this.state.user === undefined) {
+        if(this.state.user === undefined && localStorage.length == 0) {
             const loc = window.location.href;
             let id = "";
             for (let i = loc.length-1; i > 0; i--) {

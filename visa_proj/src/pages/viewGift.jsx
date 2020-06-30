@@ -25,10 +25,10 @@ class ViewGift extends Component {
                 break;
             }
             id = id + loc[i];
-
         }
         return id.split("").reverse().join("");
     }
+
     getGiftInfo() {
         const id = this.getGiftId();
         const jwt = localStorage.getItem("jwt");
