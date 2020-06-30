@@ -27,8 +27,10 @@ class Login extends Component {
         axios.post("http://localhost:8080/authenticate", {
             username: this.state.username,
             password: this.state.password
-        }).then(res => {localStorage.setItem('jwt', res.data.jwt);
-            this.props.history.push("/")});
+        }).then(res => {
+            localStorage.setItem('jwt', res.data.jwt);
+            this.props.history.push("/")
+        });
     }
 
     render() {
@@ -43,7 +45,7 @@ class Login extends Component {
                             <br />
                             <br />
                             <Form onSubmit={e => this.submit(e)}>
-                                <h2>Login</h2>
+                                <h2>Log In</h2>
                                 <Form.Group controlId="formUsername">
                                     <Form.Label>Username</Form.Label>
                                     <Form.Control name="username" value={this.state.username} onChange={e => this.change(e)} type="username" placeholder="Enter username or email" />
@@ -69,7 +71,8 @@ class Login extends Component {
                     </Row>
                 </Container>
             </React.Fragment>
-        )};
+        )
+    };
 }
 
 export default Login;
