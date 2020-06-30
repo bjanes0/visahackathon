@@ -85,6 +85,4 @@ public class gift_campaigns_controller {
 	        response.put("deleted", Boolean.TRUE);
 	        return response;
 	    }
-	    
-
 }
