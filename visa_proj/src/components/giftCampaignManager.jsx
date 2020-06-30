@@ -50,9 +50,10 @@ class GiftManager extends Component {
                     <Card.Title>{giftCampaign[i].giftCampaignName}</Card.Title>
                     <Card.Subtitle>Total Gift Amount: ${giftCampaign[i].giftTotal}</Card.Subtitle>
                     <Card.Text>
+                        <h6>Contributers: {giftCampaign[i].totalGifters}</h6>
                         <h6>Sent To: {giftCampaign[i].recipientEmail}</h6>
-                        <Button id="log_button" variant="secondary" href={"/visahackathon/#/editGift/"+giftCampaign[i].giftCampaignId} active>
-                        Manage Gift Campaign
+                        <Button id="log_button" variant="secondary" href={"/visahackathon/#/editGiftCampaign/"+giftCampaign[i].giftCampaignId} active>
+                        Edit Gift Campaign
                         </Button>
                         <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/view" active>
                          View Gift Cmapaign

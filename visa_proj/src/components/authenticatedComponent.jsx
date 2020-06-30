@@ -23,8 +23,9 @@ class AuthenticatedComponent extends Component {
         })
     }
 
+
+
     render() {
-        console.log(this.state.user);
         if(this.state.user === undefined) {
             const loc = window.location.href;
             let id = "";
@@ -32,14 +33,13 @@ class AuthenticatedComponent extends Component {
                 if(loc[i] === "/") {
                     break;
                 }
-                id = id + loc[i];
-                
+                id = id + loc[i]; 
             }
             const path = id.split("").reverse().join("")
             if(path !== "" && path !== "login" && path !== "register") {
                 return <Redirect to="/login" />
             }
-        }        
+        } 
         return (
             <div>
                 {this.props.children}
