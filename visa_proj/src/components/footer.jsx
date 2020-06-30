@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Col, Row} from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import '../css/footer.css';
 
 export const Footer = () => (
@@ -7,24 +7,24 @@ export const Footer = () => (
         <Container fluid id="footer">
             <Row>
                 <Col id="col_foot">
-                    <br/>
-                    <p id="p_foot">About us</p>
+                    <br />
+                    <p id="p_foot"></p>
                 </Col>
                 <Col id="col_foot">
-                    <br/>
-                    <p id="p_foot">About us</p>
+                    <br />
+                    <p id="p_foot"></p>
                 </Col>
                 <Col id="col_foot">
-                    <br/>
-                    <p id="p_foot">About us</p>
+                    <br />
+                    <p id="p_foot"></p>
                 </Col>
                 <Col id="col_foot">
-                    <br/>
-                    <p id="p_foot">About us</p>
+                    <br />
+                    <p id="p_foot"></p>
                 </Col>
                 <Col id="col_foot">
-                    <br/>
-                    <p id="p_foot">About us</p>
+                    <br />
+                    <p id="p_foot">Visa Touch</p>
                 </Col>
             </Row>
         </Container>
