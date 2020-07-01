@@ -39,7 +39,7 @@ public class EmailService {
 			MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
 					StandardCharsets.UTF_8.name());
 			// add attachment
-			helper.addAttachment("SEDONA.heif", new ClassPathResource("SEDONA.heif"));
+			helper.addAttachment("card-mock-up-birthday-confetti_23-2148346787.jpg", new ClassPathResource("card-mock-up-birthday-confetti_23-2148346787.jpg"));
 
 			Template t = config.getTemplate("email-template.ftl");
 			String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
