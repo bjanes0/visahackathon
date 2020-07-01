@@ -8,7 +8,7 @@ import  CreateGift  from './pages/createGift';
 import  NavigationBar  from './components/navigationBar';
 import { Footer } from './components/footer';
 import  ViewGift  from './pages/viewGift';
-import { Gift } from './pages/gift';
+import Gift  from './pages/gift';
 import  EditGift  from './pages/editGift';
 import  EditGiftCampaign  from './pages/editGiftCampaign';
 import GiftTemplates from './pages/giftTemplates';

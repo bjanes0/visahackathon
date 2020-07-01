@@ -30,7 +30,7 @@ class GiftManager extends Component {
         axios.delete("http://localhost:8080/api/v1/gift_campaigns/"+giftCampaignId, { headers: {Authorization: `Bearer ${jwt}`}})
         .then(response => {
             if(response.data != null) {
-                alert("Gift deleted successfully!");
+                alert("Gift campaign deleted successfully!");
                 this.setState({
                     giftCampaigns: this.state.giftCampaigns.filter(giftCampaign => giftCampaign.Id !== giftCampaignId)
                 });
@@ -54,7 +54,7 @@ class GiftManager extends Component {
                         <Button id="log_button" variant="secondary" href={"/visahackathon/#/editGiftCampaign/"+giftCampaign[i].giftCampaignId} active>
                         Edit Gift Campaign
                         </Button>
-                        <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/view" active>
+                        <Button className="m-1" id="log_button" variant="secondary" href={"/visahackathon/#/view/"+giftCampaign[i].giftCampaignId} active>
                          View Gift Campaign
                         </Button>
                         <Button id="log_button" variant="secondary" onClick={this.deleteGift.bind(this, giftCampaign[i].giftCampaignId)} active>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import { Container, Button, Row, Col, Image } from 'react-bootstrap';
 import sampleCard from '../assets/sampleCard.png';
+import img1 from '../assets/pic1.jpg';
 import axios from 'axios';
 import '../css/viewGift.css';
 
@@ -9,12 +11,14 @@ class ViewGift extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gifts: {}
+            giftCampaign: {},
+            campaignGifts: []
         }
     }
 
     componentDidMount() {
         this.getGiftInfo();
+        this.campaignGifts();
     }
 
     getGiftId() {
@@ -32,36 +36,60 @@ class ViewGift extends Component {
     getGiftInfo() {
         const id = this.getGiftId();
         const jwt = localStorage.getItem("jwt");
-        axios.get("http://localhost:8080/api/v1/gifts/" + id, { headers: { Authorization: `Bearer ${jwt}` } })
+        axios.get("http://localhost:8080/api/v1/gift_campaigns/" + id, { headers: { Authorization: `Bearer ${jwt}` } })
             .then(response => response.data)
             .then((data) => {
-                this.setState({ gifts: data });
+                this.setState({ giftCampaign: data });
             });
     }
 
+    campaignGifts() {
+        let camp_gift = {};
+        const id = this.getGiftId();
+        const jwt = localStorage.getItem("jwt");
+        const messages = [];
+        axios.get("http://localhost:8080/api/v1/gifts_in_campaign/"+id, { headers: { Authorization: `Bearer ${jwt}` } })
+        .then(response => {
+            camp_gift = response.data;
+        
+            for(let i = 0; i < camp_gift.length; i++) {
+                const view = (
+                    <Col>
+                        <p>{camp_gift[i].giftMessage}</p>
+                    </Col>
+                );
+                messages.push(view)
+            }
+            this.setState({campaignGifts: messages});
+        });
+    }
+
     loadGiftInfo() {
-        const gift = this.state.gifts;
+        const gift = this.state.giftCampaign;
         const view = (
             <div>
                 <h2 class="m-2">View Gift</h2>
-                <h1 className="text-center">{gift.giftMessage}</h1>
-                <h3 id="giver-header" className="text-center text-muted">Gift Created by: {gift.userId}</h3>
+                <h1 className="text-center">{gift.giftCampaignName}</h1>
+                <h3 id="giver-header" className="text-center text-muted">Gift Created by: Person</h3>
                 <div class="text-center m-4">
+                    <Row>
+                        {this.state.campaignGifts}
+                    </Row>
                     <Image id="card-img" src={sampleCard} />
                 </div>
                 <Row>
-                    <Col><p class="text-right">26 givers</p></Col>
-                    <Col><p class="text-left">Opened {gift.giftDate}</p></Col>
+                    <Col><p className="text-right">{gift.totalGifters} givers</p></Col>
+                    <Col><p className="text-center">Total Gift Amount: ${gift.giftTotal}</p></Col>
+                    <Col><p className="text-left">Opened: {gift.startDate}</p></Col>
                 </Row>
                 <div class="text-center m-4">
-                    Gift now: <Button variant="outline-secondary" href="/visahackathon/#/gift">Click Here!</Button>
+                    Gift now: <Link to={{pathname: '/gift', id: this.getGiftId()}}><Button variant="outline-secondary">Click Here!</Button></Link>
                 </div>
             </div>);
         return view;
     }
 
     render() {
-
         return (
             <React.Fragment>
                 {this.loadGiftInfo()}

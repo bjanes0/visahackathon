@@ -19,7 +19,7 @@ class SearchResults extends Component {
 
     getGifts() {
         const jwt = localStorage.getItem("jwt");
-        axios.get("http://localhost:8080/api/v1/gifts/", { headers: { Authorization : `Bearer ${jwt}` }})
+        axios.get("http://localhost:8080/api/v1/gift_campaigns/", { headers: { Authorization : `Bearer ${jwt}` }})
         .then(response => response.data)
         .then((data) => {
             this.setState({gifts: data});
@@ -33,11 +33,11 @@ class SearchResults extends Component {
             const card = (
             <Card>
                 <Card.Body>
-                    <Card.Title>{gift[i].giftMessage}</Card.Title>
+                    <Card.Title>{gift[i].giftCampaignName}</Card.Title>
                     <Card.Subtitle>Created By: Person 1</Card.Subtitle>
                     <Card.Text>
-                        <h6>Sent To: Rachel</h6>
-                        <Button className="m-1" id="log_button" variant="secondary" href={"/visahackathon/#/view/"+gift[i].giftId}>
+                        <h6>Sent To: {gift[i].recipientEmail}</h6>
+                        <Button className="m-1" id="log_button" variant="secondary" href={"/visahackathon/#/view/"+gift[i].giftCampaignId}>
                             View Gift
                         </Button>
                     </Card.Text>

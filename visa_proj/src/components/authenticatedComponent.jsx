@@ -23,8 +23,6 @@ class AuthenticatedComponent extends Component {
         })
     }
 
-
-
     render() {
         if(this.state.user === undefined && localStorage.length == 0) {
             const loc = window.location.href;

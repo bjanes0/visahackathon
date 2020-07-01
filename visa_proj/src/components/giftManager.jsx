@@ -34,9 +34,38 @@ class GiftManager extends Component {
                 this.setState({
                     gifts: this.state.gifts.filter(gift => gift.Id !== giftId)
                 });
-                this.reloadPage();
+                //this.reloadPage();
             }
-        })
+        });
+
+        let id = '';
+        let amount = '';
+        for(let i = 0; i < this.state.gifts.length; i++) {
+            if(giftId === this.state.gifts[i].giftId) {
+                id = this.state.gifts[i].giftCampaignId;
+                amount = this.state.gifts[i].amount;
+            }
+        }
+        console.log(id);
+        console.log(amount);
+
+        let campaign = {};
+        axios.get("http://localhost:8080/api/v1/gift_campaigns/"+id, { headers: { Authorization : `Bearer ${jwt}` }})
+            .then(response => {
+                campaign = response.data;
+                console.log("total: "+campaign.giftTotal);
+                console.log("amount: "+amount);
+                campaign.giftTotal = parseInt(campaign.giftTotal) - parseInt(amount);
+                campaign.totalGifters = campaign.totalGifters - 1;
+                console.log("total: "+campaign.giftTotal);
+                console.log("amount: "+amount);
+                axios.put("http://localhost:8080/api/v1/gift_campaigns/"+id, campaign, { headers: { Authorization: `Bearer ${jwt}` }})
+                .then(response => {
+                    if(response.data != null) {
+                        this.reloadPage();
+                    }
+                });
+            });
     }
 
     loadGifts() {
@@ -49,12 +78,9 @@ class GiftManager extends Component {
                     <Card.Title>{gift[i].giftMessage}</Card.Title>
                     <Card.Subtitle>Amount Gifted: ${gift[i].amount}</Card.Subtitle>
                     <Card.Text>
-                        <h6>Sent To: {gift[i].giftId}</h6>
+                        <h6>Gifted: {gift[i].giftDate}</h6>
                         <Button id="log_button" variant="secondary" href={"/visahackathon/#/editGift/"+gift[i].giftId} active>
-                        Manage Gift
-                        </Button>
-                        <Button className="m-1" id="log_button" variant="secondary" href="/visahackathon/#/view" active>
-                         View Gift
+                        Edit Gift
                         </Button>
                         <Button id="log_button" variant="secondary" onClick={this.deleteGift.bind(this, gift[i].giftId)} active>
                         Delete Gift
