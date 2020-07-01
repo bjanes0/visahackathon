@@ -1,3 +1,22 @@
 #card-img{
-    height: 250px;
+    height: 400px;
+    margin-top: -10px;
+    position: relative;
+}
+
+#card-img1{
+    height: 150px;
+    right: 550px;
+    top: 350px;
+    position: absolute;
+}
+
+#view {
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    z-index: 1;
+    width: 500px;
+    position: absolute;
+    left: 550px;
+    top: 250px
 }

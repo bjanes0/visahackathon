@@ -52,13 +52,48 @@ class ViewGift extends Component {
         .then(response => {
             camp_gift = response.data;
         
-            for(let i = 0; i < camp_gift.length; i++) {
-                const view = (
-                    <Col>
-                        <p>{camp_gift[i].giftMessage}</p>
-                    </Col>
-                );
-                messages.push(view)
+            for(let i = 0; i < camp_gift.length; i+=3) {
+                console.log("loop")
+                console.log(camp_gift.length);
+                if(camp_gift.length - i >= 3) {
+                    const view = (
+                        <Row id="view" style={{top: 250 + (i*20)}} className="row justify-content-md-center">
+                            <Col>
+                                <h6>{camp_gift[i].giftMessage}</h6>
+                            </Col>
+                            <Col>
+                                <h6>{camp_gift[i+1].giftMessage}</h6>
+                            </Col>
+                            <Col>
+                                <h6>{camp_gift[i+2].giftMessage}</h6>
+                            </Col>
+                        </Row>
+                    );
+                    messages.push(view)
+                }
+                if(camp_gift.length -i == 2) {
+                    const view = (
+                        <Row id="view" style={{top: 250 + (i*20)}} className="row justify-content-md-center">
+                            <Col>
+                                <h6>{camp_gift[i].giftMessage}</h6>
+                            </Col>
+                            <Col>
+                                <h6>{camp_gift[i+1].giftMessage}</h6>
+                            </Col>
+                        </Row>
+                    );
+                    messages.push(view)
+                }
+                if(camp_gift.length - i == 1) {
+                    const view = (
+                        <Row id="view" style={{top: 250 + (i*20)}} className="row justify-content-md-center">
+                            <Col>
+                                <h6>{camp_gift[i].giftMessage}</h6>
+                            </Col>
+                        </Row>
+                    );
+                    messages.push(view)
+                }
             }
             this.setState({campaignGifts: messages});
         });
@@ -72,10 +107,9 @@ class ViewGift extends Component {
                 <h1 className="text-center">{gift.giftCampaignName}</h1>
                 <h3 id="giver-header" className="text-center text-muted">Gift Created by: Person</h3>
                 <div class="text-center m-4">
-                    <Row>
-                        {this.state.campaignGifts}
-                    </Row>
-                    <Image id="card-img" src={sampleCard} />
+                    {this.state.campaignGifts}
+                    <Image id="card-img" src={img1} />
+                    <Image id="card-img1" src={sampleCard} />
                 </div>
                 <Row>
                     <Col><p className="text-right">{gift.totalGifters} givers</p></Col>
