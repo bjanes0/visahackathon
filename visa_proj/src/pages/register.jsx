@@ -145,11 +145,11 @@ class Register extends Component {
                                                     <Form.Control
                                                         type="text"
                                                         placeholder="Phone #"
-                                                        name="phone"
-                                                        value={this.state.phone}
+                                                        name="telephone"
+                                                        value={this.state.telephone}
                                                         onChange={e => this.change(e)}
-                                                        isValid={touched.phone && !errors.phone}
-                                                        isInvalid={touched.phone && !!errors.phone}
+                                                        isValid={touched.telephone && !errors.telephone}
+                                                        isInvalid={touched.telephone && !!errors.telephone}
                                                     />
 
                                                     <Form.Control.Feedback type="invalid">

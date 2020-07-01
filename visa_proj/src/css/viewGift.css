@@ -6,7 +6,7 @@
 
 #card-img1{
     height: 150px;
-    right: 550px;
+    right: 730px;
     top: 350px;
     position: absolute;
 }
@@ -15,8 +15,8 @@
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     z-index: 1;
-    width: 500px;
+    width: 450px;
     position: absolute;
-    left: 550px;
+    left: 750px;
     top: 250px
 }

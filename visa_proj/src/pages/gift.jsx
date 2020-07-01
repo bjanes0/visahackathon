@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import '../css/gift.css';
@@ -48,12 +49,6 @@ class Gift extends Component {
         console.log(this.state.userId);
 
         axios.post("http://localhost:8080/api/v1/gifts/"+this.state.userId, this.state, { headers: { Authorization : `Bearer ${jwt}` }})
-            .then(response => {
-                if(response.data != null) {
-                    this.props.history.push("/my-gifts");
-                    alert("Gift created successfully!");
-                }
-            })
 
         let campaign = {};
         axios.get("http://localhost:8080/api/v1/gift_campaigns/"+this.state.giftCampaignId, { headers: { Authorization : `Bearer ${jwt}` }})
@@ -63,12 +58,6 @@ class Gift extends Component {
                 campaign.giftTotal = parseInt(this.state.amount) + parseInt(campaign.giftTotal);
                 campaign.totalGifters = campaign.totalGifters + 1;
                 axios.put("http://localhost:8080/api/v1/gift_campaigns/"+this.state.giftCampaignId, campaign, { headers: { Authorization: `Bearer ${jwt}` }})
-                .then(response => {
-                    if(response.data != null) {
-                        this.props.history.push("/my-gifts");
-                        this.reloadPage();
-                    }
-                });
             });
     }
 
@@ -100,9 +89,11 @@ class Gift extends Component {
                     <Form.File />
                 </Form.Group>
                 <Form.Group>
-                    <Button id="next_button_gift" onClick={this.addGift} variant="secondary" size="lg">
-                        Next<i className="arrow right"></i>
-                    </Button>
+                    <Link to={{pathname: "/payment"}}>
+                        <Button id="next_button_gift" onClick={this.addGift} variant="secondary" size="lg">
+                            Next<i className="arrow right"></i>
+                        </Button>
+                    </Link>
                 </Form.Group>
             </Form>
         </div>

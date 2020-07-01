@@ -34,7 +34,7 @@ class GiftManager extends Component {
                 this.setState({
                     gifts: this.state.gifts.filter(gift => gift.Id !== giftId)
                 });
-                //this.reloadPage();
+                this.reloadPage();
             }
         });
 
@@ -79,7 +79,7 @@ class GiftManager extends Component {
                     <Card.Subtitle>Amount Gifted: ${gift[i].amount}</Card.Subtitle>
                     <Card.Text>
                         <h6>Gifted: {gift[i].giftDate}</h6>
-                        <Button id="log_button" variant="secondary" href={"/visahackathon/#/editGift/"+gift[i].giftId} active>
+                        <Button className="m-1" id="log_button" variant="secondary" href={"/visahackathon/#/editGift/"+gift[i].giftId} active>
                         Edit Gift
                         </Button>
                         <Button id="log_button" variant="secondary" onClick={this.deleteGift.bind(this, gift[i].giftId)} active>

@@ -12,6 +12,7 @@ import Gift  from './pages/gift';
 import  EditGift  from './pages/editGift';
 import  EditGiftCampaign  from './pages/editGiftCampaign';
 import GiftTemplates from './pages/giftTemplates';
+import Payment from './pages/payment';
 import './App.css';
 import { Search } from './pages/search';
 import AuthenticatedComponent from './components/authenticatedComponent';
@@ -35,6 +36,7 @@ class App extends Component {
             <Route path="/editGiftCampaign" component={EditGiftCampaign} />
             <Route path="/editGift" component={EditGift} />
             <Route path="/templates" component={GiftTemplates} />
+            <Route path="/payment" component={Payment}/>
           </AuthenticatedComponent>
         </HashRouter>
         <Footer />

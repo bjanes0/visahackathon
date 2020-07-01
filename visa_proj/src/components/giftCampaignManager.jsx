@@ -60,6 +60,9 @@ class GiftManager extends Component {
                         <Button id="log_button" variant="secondary" onClick={this.deleteGift.bind(this, giftCampaign[i].giftCampaignId)} active>
                         Delete Gift Campaign
                         </Button>
+                        <Button className="m-1" id="log_button" variant="secondary" active>
+                        Send Gift
+                        </Button>
                     </Card.Text>
                 </Card.Body>
             </Card>);
