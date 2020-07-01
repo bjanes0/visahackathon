@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/visahackathon/static/css/main.203a143e.chunk.css",
-    "main.js": "/visahackathon/static/js/main.a830646e.chunk.js",
-    "main.js.map": "/visahackathon/static/js/main.a830646e.chunk.js.map",
+    "main.css": "/visahackathon/static/css/main.8ffbdcfe.chunk.css",
+    "main.js": "/visahackathon/static/js/main.77b03523.chunk.js",
+    "main.js.map": "/visahackathon/static/js/main.77b03523.chunk.js.map",
     "runtime-main.js": "/visahackathon/static/js/runtime-main.647438cd.js",
     "runtime-main.js.map": "/visahackathon/static/js/runtime-main.647438cd.js.map",
     "static/css/2.af3c1da9.chunk.css": "/visahackathon/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.261d66e1.chunk.js": "/visahackathon/static/js/2.261d66e1.chunk.js",
-    "static/js/2.261d66e1.chunk.js.map": "/visahackathon/static/js/2.261d66e1.chunk.js.map",
+    "static/js/2.01d92f4b.chunk.js": "/visahackathon/static/js/2.01d92f4b.chunk.js",
+    "static/js/2.01d92f4b.chunk.js.map": "/visahackathon/static/js/2.01d92f4b.chunk.js.map",
     "index.html": "/visahackathon/index.html",
-    "precache-manifest.7640594fb29875a386783716aefe0887.js": "/visahackathon/precache-manifest.7640594fb29875a386783716aefe0887.js",
+    "precache-manifest.0f459aaf0cfb645addc0f0711377bd52.js": "/visahackathon/precache-manifest.0f459aaf0cfb645addc0f0711377bd52.js",
     "service-worker.js": "/visahackathon/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/visahackathon/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.203a143e.chunk.css.map": "/visahackathon/static/css/main.203a143e.chunk.css.map",
-    "static/js/2.261d66e1.chunk.js.LICENSE.txt": "/visahackathon/static/js/2.261d66e1.chunk.js.LICENSE.txt",
+    "static/css/main.8ffbdcfe.chunk.css.map": "/visahackathon/static/css/main.8ffbdcfe.chunk.css.map",
+    "static/js/2.01d92f4b.chunk.js.LICENSE.txt": "/visahackathon/static/js/2.01d92f4b.chunk.js.LICENSE.txt",
     "static/media/pic1.jpg": "/visahackathon/static/media/pic1.463d792e.jpg",
     "static/media/pic2.png": "/visahackathon/static/media/pic2.ae0c07b6.png",
     "static/media/pic3.jpg": "/visahackathon/static/media/pic3.aa9337f7.jpg",
@@ -22,8 +22,8 @@
   "entrypoints": [
     "static/js/runtime-main.647438cd.js",
     "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.261d66e1.chunk.js",
-    "static/css/main.203a143e.chunk.css",
-    "static/js/main.a830646e.chunk.js"
+    "static/js/2.01d92f4b.chunk.js",
+    "static/css/main.8ffbdcfe.chunk.css",
+    "static/js/main.77b03523.chunk.js"
   ]
 }
