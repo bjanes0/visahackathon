@@ -26,14 +26,25 @@ class GiftManager extends Component {
             for(let i = 0; i < this.state.giftCampaigns.length; i++) {
                 if(this.state.giftCampaigns[i].endDate != null) {
                     document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.backgroundColor = "gray";
-                    document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.pointerEvents = "none";
+                    //document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.pointerEvents = "none";
                 }
             }
         });
     }
     
     deleteGift = (giftCampaignId) => {
-        const jwt = localStorage.getItem("jwt")
+        const jwt = localStorage.getItem("jwt");
+        let gifts = {};
+        axios.get("http://localhost:8080/api/v1/gifts_in_campaign/"+giftCampaignId, { headers: {Authorization: `Bearer ${jwt}`}})
+        .then(response => {
+            if(response.data != null) {
+                gifts = response.data;
+                for(let i = 0; i < gifts.length; i++) {
+                    console.log("delete");
+                    axios.delete("http://localhost:8080/api/v1/gifts/"+gifts[i].giftId, { headers: {Authorization: `Bearer ${jwt}`}})
+                }
+            }
+        })
         axios.delete("http://localhost:8080/api/v1/gift_campaigns/"+giftCampaignId, { headers: {Authorization: `Bearer ${jwt}`}})
         .then(response => {
             if(response.data != null) {
