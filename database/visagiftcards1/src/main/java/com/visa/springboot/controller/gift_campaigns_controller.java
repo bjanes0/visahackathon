@@ -1,11 +1,13 @@
 package com.visa.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.visa.springboot.model.gifts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +32,9 @@ public class gift_campaigns_controller {
 	
 	@Autowired
 	private gift_campaigns_repository giftCampaignsRepository;
+
+	@Autowired
+	private gifts_controller giftsController;
 	
 	// get gift campaigns
 	@GetMapping("gift_campaigns")
@@ -44,7 +49,19 @@ public class gift_campaigns_controller {
 	        gift_campaigns giftCampaign = giftCampaignsRepository.findById(giftCampaignId)
 	          .orElseThrow(() -> new ResourceNotFoundException("Campaign not found for this id :: " + giftCampaignId));
 	        return ResponseEntity.ok().body(giftCampaign);
-	    }	 
+	    }
+
+	    @GetMapping("/gifts_in_campaign/{giftCampaignId}")
+		public List<gifts> getGiftsInCampaign(@PathVariable(value = "giftCampaignId") String giftCampaignId) {
+			List<gifts> all_gifts = giftsController.getAllGifts();
+			List<gifts> campaignGifts = new ArrayList<>();
+			for(gifts gift : all_gifts) {
+				if(gift.getGiftCampaignId().equals(giftCampaignId)) {
+					campaignGifts.add(gift);
+				}
+			}
+			return campaignGifts;
+		}
 	
 	// save gift campaign
 	    @PostMapping("/gift_campaigns")
