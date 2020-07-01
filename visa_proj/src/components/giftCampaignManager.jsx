@@ -10,6 +10,7 @@ class GiftManager extends Component {
         this.state = {
             giftCampaigns : []
         }
+        this.getGifts = this.getGifts.bind(this);
     }
 
     componentDidMount() {
@@ -22,6 +23,12 @@ class GiftManager extends Component {
         .then(response => response.data)
         .then((data) => {
             this.setState({giftCampaigns: data});
+            for(let i = 0; i < this.state.giftCampaigns.length; i++) {
+                if(this.state.giftCampaigns[i].endDate != null) {
+                    document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.backgroundColor = "gray";
+                    document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.pointerEvents = "none";
+                }
+            }
         });
     }
     
@@ -39,12 +46,31 @@ class GiftManager extends Component {
         })
     }
 
+    sendGift = campaignId => {
+        let campaign = {};
+        const jwt = localStorage.getItem("jwt");
+        axios.get("http://localhost:8080/api/v1/gift_campaigns/"+campaignId, { headers: {Authorization: `Bearer ${jwt}`}})
+            .then(response => {
+                if(response.data != null) {
+                    campaign = response.data;
+                }
+                campaign.endDate = new Date();
+                axios.put("http://localhost:8080/api/v1/gift_campaigns/"+campaignId, campaign, { headers: {Authorization: `Bearer ${jwt}`}})
+                .then(response => {
+                    if(response.data != null) {
+                        alert("Gift sent successfully!");
+                        this.reloadPage();
+                    }
+                });
+            });
+    }
+
     loadGifts() {
         const giftCampaign = this.state.giftCampaigns;
         const user_gifts = [];
         for (let i = 0; i < giftCampaign.length; i++) {
             const card = (
-            <Card>
+            <Card id={giftCampaign[i].giftCampaignId}>
                 <Card.Body>
                     <Card.Title>{giftCampaign[i].giftCampaignName}</Card.Title>
                     <Card.Subtitle>Total Gift Amount: ${giftCampaign[i].giftTotal}</Card.Subtitle>
@@ -60,7 +86,7 @@ class GiftManager extends Component {
                         <Button id="log_button" variant="secondary" onClick={this.deleteGift.bind(this, giftCampaign[i].giftCampaignId)} active>
                         Delete Gift Campaign
                         </Button>
-                        <Button className="m-1" id="log_button" variant="secondary" active>
+                        <Button onClick={this.sendGift.bind(this, giftCampaign[i].giftCampaignId)} className="m-1" id="log_button" variant="secondary" active>
                         Send Gift
                         </Button>
                     </Card.Text>

@@ -89,7 +89,7 @@ class Gift extends Component {
                     <Form.File />
                 </Form.Group>
                 <Form.Group>
-                    <Link to={{pathname: "/payment"}}>
+                    <Link to={{pathname: "/payment", data: this.state.amount}}>
                         <Button id="next_button_gift" onClick={this.addGift} variant="secondary" size="lg">
                             Next<i className="arrow right"></i>
                         </Button>

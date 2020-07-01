@@ -7,6 +7,7 @@ class Payment extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            amount: '',
             cardNumber: '',
             lastFourDigits: '',
             cvv: '',
@@ -18,6 +19,8 @@ class Payment extends Component {
     }
 
     componentDidMount() {
+        const {data} = this.props.location;
+        this.setState({amount: data});
         const jwt = localStorage.getItem("jwt");
         axios.get("http://localhost:8080/auth_user", { headers: { Authorization : `Bearer ${jwt}` }})
         .then(res => this.setState({
@@ -66,10 +69,14 @@ class Payment extends Component {
             <h2>Add money to Gift!</h2>
             <Form>
                 <Form.Group>
+                    <Form.Label>Gifting Amount</Form.Label>
+                    <Form.Control style={{width: 1218}} value={this.state.amount} type="text" readonly="true" />
+                </Form.Group>
+                <Form.Group>
                     <Row>
                         <Col>
                             <Form.Label>Card Number</Form.Label>
-                            <Form.Control maxlength="12" name="cardNumber" value={this.state.caardNumber} onChange={this.giftChange} type="text" placeholder="Enter your gift amount" />
+                            <Form.Control maxlength="12" name="cardNumber" value={this.state.cardNumber} onChange={this.giftChange} type="text" placeholder="Enter your gift amount" />
                         </Col>
                         <Col className="col-md-auto">
                             <Form.Label>CVV</Form.Label>
