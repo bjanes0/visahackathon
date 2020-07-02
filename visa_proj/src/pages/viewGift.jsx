@@ -117,7 +117,7 @@ class ViewGift extends Component {
                     <Col><p className="text-left">Opened: {gift.startDate}</p></Col>
                 </Row>
                 <div class="text-center m-4">
-                    Gift now: <Link to={{pathname: '/gift', id: this.getGiftId()}}><Button style={{backgroundColor: `rgb(253,187,10)`, color: "black"}} >Click Here!</Button></Link>
+                    Gift now: <Link style={{backgroundColor: "white"}} to={{pathname: '/gift', id: this.getGiftId()}}><Button id="gift_button" >Click Here!</Button></Link>
                 </div>
             </div>);
         return view;

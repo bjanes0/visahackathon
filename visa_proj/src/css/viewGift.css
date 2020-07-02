@@ -11,6 +11,15 @@
     position: absolute;
 }
 
+#gift_button {
+    background-color: rgb(253,187,10);
+    color: black;
+}
+
+#gift_button:hover {
+    background-color: rgb(247, 208, 103);
+}
+
 #view {
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;

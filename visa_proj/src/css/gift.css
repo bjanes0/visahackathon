@@ -2,3 +2,7 @@
     background-color: rgb(253,187,10);
     color: black;
 }
+
+#next_button_gift:hover {
+    background-color: rgb(247, 208, 103);
+}

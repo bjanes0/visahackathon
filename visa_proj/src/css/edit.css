@@ -2,3 +2,7 @@
     background-color: rgb(253,187,10);
     color: black;
 }
+
+#save_button:hover {
+    background-color: rgb(247, 208, 103);
+}

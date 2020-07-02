@@ -9,6 +9,10 @@
     width: 100%;
 }
 
+#create_gift_button:hover {
+    background-color: rgb(247, 208, 103);
+}
+
 #next_button {
     background-color: rgb(253,187,10);
     color: black;
@@ -17,6 +21,10 @@
     right: 0;
     position: absolute;
     bottom: 0;
+}
+
+#next_button:hover {
+    background-color: rgb(247, 208, 103);
 }
 
 .arrow {
