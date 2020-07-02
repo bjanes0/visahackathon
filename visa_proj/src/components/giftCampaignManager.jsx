@@ -25,7 +25,7 @@ class GiftManager extends Component {
             this.setState({giftCampaigns: data});
             for(let i = 0; i < this.state.giftCampaigns.length; i++) {
                 if(this.state.giftCampaigns[i].endDate != null) {
-                    document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.backgroundColor = "gray";
+                    document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.backgroundColor = `#A4C7FC`;
                     //document.getElementById(this.state.giftCampaigns[i].giftCampaignId).style.pointerEvents = "none";
                 }
             }

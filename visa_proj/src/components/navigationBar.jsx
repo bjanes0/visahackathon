@@ -48,11 +48,11 @@ class NavigationBar extends Component {
                 <Navbar.Toggle area-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Item><Nav.Link href="/visahackathon/#/">Home</Nav.Link></Nav.Item>
-                        <Nav.Item><Nav.Link href="/visahackathon/#/my-gifts">My Gifts</Nav.Link></Nav.Item>
-                        <Nav.Item><Nav.Link href="/visahackathon/#/search">Search Gifts</Nav.Link></Nav.Item>
-                        <Nav.Item id="login"><Nav.Link href="/visahackathon/#/login">Log In</Nav.Link></Nav.Item>
-                        <Nav.Item id="logout" onClick={this.changeLoginShow}><Nav.Link href="/visahackathon/#/">Logout</Nav.Link></Nav.Item>
+                        <Nav.Item><Nav.Link id="link" href="/visahackathon/#/">Home</Nav.Link></Nav.Item>
+                        <Nav.Item><Nav.Link id="link" href="/visahackathon/#/my-gifts">My Gifts</Nav.Link></Nav.Item>
+                        <Nav.Item><Nav.Link id="link" href="/visahackathon/#/search">Search Gifts</Nav.Link></Nav.Item>
+                        <Nav.Item id="login"><Nav.Link id="link" href="/visahackathon/#/login">Log In</Nav.Link></Nav.Item>
+                        <Nav.Item id="logout" onClick={this.changeLoginShow}><Nav.Link id="link" href="/visahackathon/#/">Logout</Nav.Link></Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

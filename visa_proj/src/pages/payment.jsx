@@ -76,7 +76,7 @@ class Payment extends Component {
                     <Row>
                         <Col>
                             <Form.Label>Card Number</Form.Label>
-                            <Form.Control maxlength="12" name="cardNumber" value={this.state.cardNumber} onChange={this.giftChange} type="text" placeholder="Enter your gift amount" />
+                            <Form.Control maxlength="12" name="cardNumber" value={this.state.cardNumber} onChange={this.giftChange} type="text" placeholder="Enter your card number" />
                         </Col>
                         <Col className="col-md-auto">
                             <Form.Label>CVV</Form.Label>

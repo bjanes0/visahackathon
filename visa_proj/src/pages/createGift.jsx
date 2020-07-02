@@ -105,7 +105,7 @@ class CreateGift extends Component {
                         </Form.Group>
                         <Form.Group>
                             <Button onClick={this.addGift} id="next_button" variant="secondary" size="lg">
-                                Save<i className="arrow right"></i>
+                                Save<i style={{color: 'blue'}} className="arrow right"></i>
                             </Button>
                         </Form.Group>
                     </Col>

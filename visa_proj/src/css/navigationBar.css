@@ -1,10 +1,13 @@
 .navbar {
     width: 100%;
-    background-color: rgb(46, 43, 43);
+    background-color: rgb(26,31,113);
+    border: 5px rgb(253,187,10);
 }
-.navbar-nav .nav-link {
-    color: black;
+
+#link {
+    color: white;
 }
-.navbar:hover .nav-link:hover {
-    color: black;
+
+#link:hover {
+    color: rgb(253,187,10);
 }
