@@ -1,7 +1,7 @@
 package com.visa.springboot.controller;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+//import java.security.MessageDigest;
+//import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class payment_info_controller {
 	    		@Valid @RequestBody payment_info paymentInfo) {
 	    	
 	    	paymentInfo.setUserId(userId);
-	    	paymentInfo.setCardNumber(convert(paymentInfo.getCardNumber()));
+	    	//paymentInfo.setCardNumber(convert(paymentInfo.getCardNumber()));
 	        return paymentInfoRepository.save(paymentInfo);
 	    }	    
 	    
@@ -91,23 +91,7 @@ public class payment_info_controller {
 	        return response;
 	    }
 	    
-	    public String convert(String s) {
-	        try {
-	            // Create MD5 Hash
-	            MessageDigest digest = MessageDigest.getInstance("MD5");
-	            digest.update(s.getBytes());
-	            byte messageDigest[] = digest.digest();
 
-	            // Create Hex String
-	            StringBuilder hexString = new StringBuilder();
-	            for (byte b : messageDigest) {
-	                hexString.append(Integer.toHexString(0xFF & b));
-	            }
-	            return hexString.toString();
-	        } catch (NoSuchAlgorithmException e) {
-	            throw new RuntimeException(e);
-	        }
-	    }
 	    
 }
 	    

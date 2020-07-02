@@ -1,5 +1,7 @@
 package com.visa.springboot.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +85,7 @@ public class gift_campaigns_controller {
 	        giftCampaign.setRecipientEmail(giftCampaignDetails.getRecipientEmail());
 	        giftCampaign.setTotalGifters(giftCampaignDetails.getTotalGifters());
 	        giftCampaign.setGiftCampaignName(giftCampaignDetails.getGiftCampaignName());
+	        giftCampaign.setRecipientCardNumber(giftCampaignDetails.getRecipientCardNumber());
 	    
 	        final gift_campaigns updatedGiftCampaign = giftCampaignsRepository.save(giftCampaign);
 	        return ResponseEntity.ok(updatedGiftCampaign);
@@ -102,4 +105,6 @@ public class gift_campaigns_controller {
 	        response.put("deleted", Boolean.TRUE);
 	        return response;
 	    }
+	    
+
 }
