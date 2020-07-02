@@ -17,8 +17,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,8 +55,8 @@ public class AppApplication {
 		}
 	}
 	
-	@GetMapping("/sendGift/{senderAccNum}+{senderName}+{senderAddr}+{senderCity}+{senderPostalCode}+{recipientState}+{recipientPrimaryAccNum}+{recipientCardExpiryDate}+{amount}")
-	public static void sendGift(@PathVariable String senderAccNum, @PathVariable String senderName, @PathVariable String senderAddr, @PathVariable String senderCity, 
+	@RequestMapping("/sendGift/{senderAccNum}+{senderName}+{senderAddr}+{senderCity}+{senderPostalCode}+{recipientState}+{recipientPrimaryAccNum}+{recipientCardExpiryDate}+{amount}")
+	public static ResponseEntity<String> sendGift(@PathVariable String senderAccNum, @PathVariable String senderName, @PathVariable String senderAddr, @PathVariable String senderCity, 
 			@PathVariable String senderPostalCode, @PathVariable String recipientState, @PathVariable String recipientPrimaryAccNum, @PathVariable String recipientCardExpiryDate, @PathVariable Double amount) {
 		
 		PushfundspostPayload pushBody = new PushfundspostPayload();
@@ -71,8 +74,10 @@ public class AppApplication {
 			ParameterizedTypeReference<PushfundspostResponse> typeRefPush = new ParameterizedTypeReference<PushfundspostResponse>() {};
 			PushfundspostResponse pushresult = apiInstance.postpushfunds(pushBody, typeRefPush, PushfundspostResponse.class, false);
 			PullfundspostResponse pullresult = apiInstance.postpullfunds(pullBody, typeRefPull, PullfundspostResponse.class, false);
+			return new ResponseEntity<String>(pushresult.toString(), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 	
 	}
