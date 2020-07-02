@@ -21,17 +21,81 @@ public class Test {
 		
 		FundsTransferApi apiInstance = new FundsTransferApi(apiClient);
 		
-		PushfundspostPayload body = new PushfundspostPayload();
+		//PushfundspostPayload body = new PushfundspostPayload();
+		PullfundspostPayload body = new PullfundspostPayload();
 		initializeParams(body);
 		
 		
-		try {
+		/*try {
 			ParameterizedTypeReference<PushfundspostResponse> typeRef = new ParameterizedTypeReference<PushfundspostResponse>() {};
 			PushfundspostResponse result = apiInstance.postpushfunds(body, typeRef, PushfundspostResponse.class, false);
 			System.out.println(result);
 		} catch(Exception e) {
 			e.printStackTrace();
+		}*/
+		
+		
+		//here
+		try {
+			ParameterizedTypeReference<PullfundspostResponse> typeRef = new ParameterizedTypeReference<PullfundspostResponse>() {};
+			PullfundspostResponse result = apiInstance.postpullfunds(body, typeRef, PullfundspostResponse.class, false);
+			System.out.println(result);
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
+		//to here
+		
+	}
+	
+	
+	
+	private static void initializeParams(PullfundspostPayload body) {
+		int systemsTraceAuditNumber = 123456;
+		int uniqueIdCode = 12345;
+		String senderAccountNum = "4957030420210454";
+		String senderName = "John Johnson";
+		String senderAddr = "123 Fake St";
+		String senderCity = "Foster City";
+		String senderPostalCode = "12346";
+		String recipientState = "NY";
+		String recipientPrimaryAccountNum = "4957030420210462";
+		String recipientCardExpiryDate = "2025-03";
+		Double amount = 10.49;
+		
+		body.setSystemsTraceAuditNumber(systemsTraceAuditNumber); //Unique value for each api call
+		body.setRetrievalReferenceNumber(generateRetrievalReferenceNum(Integer.toString(systemsTraceAuditNumber)));
+		body.setLocalTransactionDateTime(ZonedDateTime.now().toString().substring(0, 19));
+		body.setAcquiringBin(408999);
+		body.setAcquirerCountryCode(840);
+		body.setSenderAccountNumber(senderAccountNum);
+		body.setSenderCardExpiryDate("2025-03");
+		body.setSenderCurrencyCode("USD");
+		body.setSenderPostalCode(senderPostalCode);
+		body.setSenderAddress(senderAddr);
+		body.setSenderCity(senderCity);
+		body.setSenderStateCode("CA");
+		body.setRecipientState(recipientState);
+		body.setRecipientCountryCode("840");
+		body.setSenderPrimaryAccountNumber(recipientPrimaryAccountNum);
+		body.setSenderCardExpiryDate(recipientCardExpiryDate);
+		body.setAmount(amount);
+		body.setBusinessApplicationId("AA");
+		body.setMerchantCategoryCode(6012);
+		//body.setSourceOfFunds("01");
+		body.businessApplicationId("AA");
+		//Create Card Acceptor Object
+		CardAcceptor cardAcceptor = new CardAcceptor();
+		cardAcceptor.setName(senderName);
+		cardAcceptor.setTerminalId("365529");
+		cardAcceptor.setIdCode("VisaTouch-"+uniqueIdCode);
+		Address address = new Address();
+		address.setState("CA");
+		address.setCounty("San Mateo");
+		address.setCountry("USA");
+		address.setZipCode("94404");
+		cardAcceptor.setAddress(address);
+		
+		body.setCardAcceptor(cardAcceptor);
 	}
 	
 	private static void initializeParams(PushfundspostPayload body) {
