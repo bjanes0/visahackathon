@@ -8,24 +8,29 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.*;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 
 import org.apache.http.Header;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContexts;
-import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
 @Component
-public class ApiClient {
+public class Api_Client {
 
         private String keyStorePath;
         private String keyStorePass;
@@ -34,21 +39,21 @@ public class ApiClient {
         private Header authHeader;
 
         //Create empty api client
-        public ApiClient() {}
+        public Api_Client() {}
 
         //Create api client with given key store
-        public ApiClient(String keyStorePath, String keyStorePass, String keyPassword) {
+        public Api_Client(String keyStorePath, String keyStorePass, String keyPassword) {
                 this.keyPassword = keyPassword;
                 this.keyStorePass = keyStorePass;
                 this.keyStorePath = keyStorePath;
         }
 
         public void setKeyStorePath(String keyStorePath) {
-                this.keyStorePath = keyStorePath;
+            this.keyStorePath = keyStorePath;
         }
 
         public void setKeyStorePass(String keyStorePass) {
-                this.keyStorePass = keyStorePass;
+            this.keyStorePass = keyStorePass;
         }
         
         public void setKeyPassword(String keyPassword) {
@@ -56,7 +61,7 @@ public class ApiClient {
         }
 
         public CloseableHttpClient getHttpClient() {
-                return httpClient;
+            return httpClient;
         }
 
         /* Sets the authentication header. Whenever a request is made, this header will be added to the request */
@@ -68,11 +73,27 @@ public class ApiClient {
         /* Make sure Auth Header is set (use setAuthHeader()) prior to calling this method */
         public CloseableHttpResponse sendGET(String uri) throws IOException {
                 HttpGet httpGet = new HttpGet(uri);
-                // HttpHeaders header = new HttpHeaders();
-                // addAuthenticationToHeader(header, "P1M3UPUGQCAD3S994LHL21ENfrUfsEna144_pj7pWrORkLkNY", "mL7teKgSyur8glB8dRJfO6P");
                 httpGet.addHeader(authHeader);
                 return httpClient.execute(httpGet);
         }
+        
+        /* Make sure Auth Header is set prior to calling this method */
+        public CloseableHttpResponse sendPOST(String uri, List<NameValuePair> params) throws IOException {	
+        	HttpPost httpPost = new HttpPost(uri);
+        	httpPost.addHeader(authHeader);
+        	httpPost.setEntity(new UrlEncodedFormEntity(params));
+        	return httpClient.execute(httpPost);
+        }
+        
+        /* Make sure Auth Header is set prior to calling this method */
+        public CloseableHttpResponse sendPOSTwithJSON(String uri, String json) throws IOException {	
+        	HttpPost httpPost = new HttpPost(uri);
+        	httpPost.setHeader("Content-type", "application/json");
+        	httpPost.addHeader(authHeader);
+        	httpPost.setEntity(new StringEntity(json));
+        	return httpClient.execute(httpPost);
+        }
+        
 
         /* Establishes two way ssl using key store and key password */
         public void establishSSL() throws NoSuchAlgorithmException, KeyStoreException, 
@@ -93,21 +114,13 @@ public class ApiClient {
                 
                 HttpsURLConnection.setDefaultSSLSocketFactory(sslcontext.getSocketFactory());
         }
+        
+        /* Compiles all REQUIRED request attributes for a pull funds request into a list so that
+         * sendPOST() can easily be called. All optional request attributes must be added to 
+         * the list manually */
+//        public String buildPullFundsParamJson() {
+//        	JSONObject json = new JSONObject();
+//        }
+        
 
-        /* FOR QUICK TESTING (remove this before deploying) */
-        public static void main(String[] args) {
-                /*Example with HelloWorld GET request*/
-                //First creates instance of apis with keystore
-                ApiClient api = new ApiClient("app/keys/keyAndCertBundle.jks", "password", "password");
-                try {
-                        api.establishSSL(); //connect to visa api with ssl
-                        api.setAuthHeader("P1M3UPUGQCAD3S994LHL21ENfrUfsEna144_pj7pWrORkLkNY", "mL7teKgSyur8glB8dRJfO6P"); //authentication info for every request
-                        CloseableHttpResponse res = api.sendGET("https://sandbox.api.visa.com/vdp/helloworld");
-                        String responseJSON = EntityUtils.toString(res.getEntity(), StandardCharsets.UTF_8);
-                        System.out.println("\nResponse:");
-                        System.out.println(responseJSON); //Prints JSON from GET
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
-        }
 }

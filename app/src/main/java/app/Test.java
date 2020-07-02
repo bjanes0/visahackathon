@@ -1,91 +1,66 @@
 package app;
 
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Year;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.visa.developer.sample.funds_transfer_api.*;
 import com.visa.developer.sample.funds_transfer_api.model.*;
 import com.visa.developer.sample.funds_transfer_api.api.FundsTransferApi;
 
-@SpringBootApplication
-@RestController
-public class AppApplication {
-	
-	private static FundsTransferApi apiInstance;
+import java.time.*;
+
+public class Test {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(AppApplication.class, args);
-		
 		ApiClient apiClient = new ApiClient();
 		apiClient.setUsername("P1M3UPUGQCAD3S994LHL21ENfrUfsEna144_pj7pWrORkLkNY");
 		apiClient.setPassword("mL7teKgSyur8glB8dRJfO6P");
 		apiClient.setKeystorePath("keys/keyAndCertBundle.jks");
 		apiClient.setKeystorePassword("password");
 		apiClient.setPrivateKeyPassword("password");
+		apiClient.buildRestTemplate();
 		
-		apiInstance = new FundsTransferApi(apiClient);
+		FundsTransferApi apiInstance = new FundsTransferApi(apiClient);
 		
-		try {
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@RequestMapping("/sendGift/{senderAccNum}+{senderName}+{senderAddr}+{senderCity}+{senderPostalCode}+{recipientState}+{recipientPrimaryAccNum}+{recipientCardExpiryDate}+{amount}")
-	public static ResponseEntity<String> sendGift(@PathVariable String senderAccNum, @PathVariable String senderName, @PathVariable String senderAddr, @PathVariable String senderCity, 
-			@PathVariable String senderPostalCode, @PathVariable String recipientState, @PathVariable String recipientPrimaryAccNum, @PathVariable String recipientCardExpiryDate, @PathVariable Double amount) {
+		//PushfundspostPayload body = new PushfundspostPayload();
+		PullfundspostPayload body = new PullfundspostPayload();
+		initializeParams(body);
 		
-		PushfundspostPayload pushBody = new PushfundspostPayload();
-		PullfundspostPayload pullBody = new PullfundspostPayload();
-		//Generate numbers
-		int systemsTraceAuditNumber = ThreadLocalRandom.current().nextInt(100000, 1000000);
-		int uniqueIdCode = ThreadLocalRandom.current().nextInt(10000, 100000);
-		initializeParams(pushBody, systemsTraceAuditNumber, uniqueIdCode, senderAccNum, senderName, senderAddr, senderCity,
-				senderPostalCode, recipientState, recipientPrimaryAccNum, recipientCardExpiryDate, amount);
-		initializeParams(pullBody, systemsTraceAuditNumber, uniqueIdCode, senderAccNum, senderName, senderAddr, senderCity,
-				senderPostalCode, recipientState, recipientPrimaryAccNum, recipientCardExpiryDate, amount);
 		
-		try {
-			ParameterizedTypeReference<PullfundspostResponse> typeRefPull = new ParameterizedTypeReference<PullfundspostResponse>() {};
-			ParameterizedTypeReference<PushfundspostResponse> typeRefPush = new ParameterizedTypeReference<PushfundspostResponse>() {};
-			PushfundspostResponse pushresult = apiInstance.postpushfunds(pushBody, typeRefPush, PushfundspostResponse.class, false);
-			PullfundspostResponse pullresult = apiInstance.postpullfunds(pullBody, typeRefPull, PullfundspostResponse.class, false);
-			return new ResponseEntity<String>(pushresult.toString(), HttpStatus.CREATED);
+		/*try {
+			ParameterizedTypeReference<PushfundspostResponse> typeRef = new ParameterizedTypeReference<PushfundspostResponse>() {};
+			PushfundspostResponse result = apiInstance.postpushfunds(body, typeRef, PushfundspostResponse.class, false);
+			System.out.println(result);
 		} catch(Exception e) {
 			e.printStackTrace();
-			return null;
+		}*/
+		
+		
+		//here
+		try {
+			ParameterizedTypeReference<PullfundspostResponse> typeRef = new ParameterizedTypeReference<PullfundspostResponse>() {};
+			PullfundspostResponse result = apiInstance.postpullfunds(body, typeRef, PullfundspostResponse.class, false);
+			System.out.println(result);
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
-	
+		//to here
+		
 	}
 	
 	
-	private static void initializeParams(PullfundspostPayload body, int systemsTraceAuditNumber, int uniqueIdCode,
-			String senderAccountNum, String senderName, String senderAddr, String senderCity, 
-			String senderPostalCode, String recipientState, String recipientPrimaryAccountNum, String recipientCardExpiryDate, Double amount) {
+	
+	private static void initializeParams(PullfundspostPayload body) {
+		int systemsTraceAuditNumber = 123456;
+		int uniqueIdCode = 12345;
+		String senderAccountNum = "4957030420210454";
+		String senderName = "John Johnson";
+		String senderAddr = "123 Fake St";
+		String senderCity = "Foster City";
+		String senderPostalCode = "12346";
+		String recipientState = "NY";
+		String recipientPrimaryAccountNum = "4957030420210462";
+		String recipientCardExpiryDate = "2025-03";
+		Double amount = 10.49;
 		
 		body.setSystemsTraceAuditNumber(systemsTraceAuditNumber); //Unique value for each api call
 		body.setRetrievalReferenceNumber(generateRetrievalReferenceNum(Integer.toString(systemsTraceAuditNumber)));
@@ -123,9 +98,18 @@ public class AppApplication {
 		body.setCardAcceptor(cardAcceptor);
 	}
 	
-	private static void initializeParams(PushfundspostPayload body, int systemsTraceAuditNumber, int uniqueIdCode,
-			String senderAccountNum, String senderName, String senderAddr, String senderCity, 
-			String senderPostalCode, String recipientState, String recipientPrimaryAccountNum, String recipientCardExpiryDate, Double amount) {
+	private static void initializeParams(PushfundspostPayload body) {
+		int systemsTraceAuditNumber = 123456;
+		int uniqueIdCode = 12345;
+		String senderAccountNum = "4957030420210454";
+		String senderName = "John Johnson";
+		String senderAddr = "123 Fake St";
+		String senderCity = "Foster City";
+		String senderPostalCode = "12346";
+		String recipientState = "NY";
+		String recipientPrimaryAccountNum = "4957030420210462";
+		String recipientCardExpiryDate = "2025-03";
+		Double amount = 10.49;
 		
 		body.setSystemsTraceAuditNumber(systemsTraceAuditNumber); //Unique value for each api call
 		body.setRetrievalReferenceNumber(generateRetrievalReferenceNum(Integer.toString(systemsTraceAuditNumber)));
@@ -178,6 +162,4 @@ public class AppApplication {
 		
 		return refNum.toString();
 	}
-
-
 }
