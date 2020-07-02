@@ -45,6 +45,7 @@ public class AppApplication {
 		apiClient.setKeystorePath("keys/keyAndCertBundle.jks");
 		apiClient.setKeystorePassword("password");
 		apiClient.setPrivateKeyPassword("password");
+		apiClient.buildRestTemplate();
 		
 		apiInstance = new FundsTransferApi(apiClient);
 		
@@ -55,7 +56,8 @@ public class AppApplication {
 		}
 	}
 	
-	@RequestMapping("/sendGift/{senderAccNum}+{senderName}+{senderAddr}+{senderCity}+{senderPostalCode}+{recipientState}+{recipientPrimaryAccNum}+{recipientCardExpiryDate}+{amount}")
+	
+	@RequestMapping("sendGift/{senderAccNum}+{senderName}+{senderAddr}+{senderCity}+{senderPostalCode}+{recipientState}+{recipientPrimaryAccNum}+{recipientCardExpiryDate}+{amount}")
 	public static ResponseEntity<String> sendGift(@PathVariable String senderAccNum, @PathVariable String senderName, @PathVariable String senderAddr, @PathVariable String senderCity, 
 			@PathVariable String senderPostalCode, @PathVariable String recipientState, @PathVariable String recipientPrimaryAccNum, @PathVariable String recipientCardExpiryDate, @PathVariable Double amount) {
 		
@@ -68,13 +70,14 @@ public class AppApplication {
 				senderPostalCode, recipientState, recipientPrimaryAccNum, recipientCardExpiryDate, amount);
 		initializeParams(pullBody, systemsTraceAuditNumber, uniqueIdCode, senderAccNum, senderName, senderAddr, senderCity,
 				senderPostalCode, recipientState, recipientPrimaryAccNum, recipientCardExpiryDate, amount);
+		System.out.println(pushBody);
 		
 		try {
 			ParameterizedTypeReference<PullfundspostResponse> typeRefPull = new ParameterizedTypeReference<PullfundspostResponse>() {};
 			ParameterizedTypeReference<PushfundspostResponse> typeRefPush = new ParameterizedTypeReference<PushfundspostResponse>() {};
 			PushfundspostResponse pushresult = apiInstance.postpushfunds(pushBody, typeRefPush, PushfundspostResponse.class, false);
 			PullfundspostResponse pullresult = apiInstance.postpullfunds(pullBody, typeRefPull, PullfundspostResponse.class, false);
-			return new ResponseEntity<String>(pushresult.toString(), HttpStatus.CREATED);
+			return new ResponseEntity<String>(pullresult.toString(), HttpStatus.CREATED);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
