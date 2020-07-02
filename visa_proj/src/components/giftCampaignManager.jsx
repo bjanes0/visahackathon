@@ -74,8 +74,23 @@ class GiftManager extends Component {
                     subject: campaign.giftCampaignName,
                     name: "Person"
                 };
-                console.log(email);
-                console.log("got gere")
+                
+                const info = {
+                    senderAccNum: "4957030420210454",
+                    senderName: "John Johnson",
+                    senderAddr: "123 Fake St",
+                    senderCity: "Foster City",
+                    senderPostalCode: "12346",
+                    recipientState: "NY",
+                    recipientPrimaryAccNum: "4957030420210462",
+                    recipientCardExpiryDate: "2025-03",
+                    amount: "10.49"
+                };
+
+                axios.post("http://localhost:4000/sendGift/"+info.senderAccNum + "+" + info.senderName + "+" + info.senderAddr + "+" +
+                    info.senderCity + "+" + info.senderPostalCode + "+" + info.recipientState + "+" + info.recipientPrimaryAccNum + "+" + info.recipientCardExpiryDate + "+" + info.amount,
+                    { headers: {Authorization: `Bearer ${jwt}`}}) 
+                    .then(response => console.log(response.data));
 
                 axios.post("http://localhost:3004/sendingEmail", email, { headers: {Authorization: `Bearer ${jwt}`}})
                 .then(alert("Gift sent successfully!"));
