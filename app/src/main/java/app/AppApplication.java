@@ -16,22 +16,22 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.visa.developer.sample.funds_transfer_api.*;
 import com.visa.developer.sample.funds_transfer_api.model.*;
 import com.visa.developer.sample.funds_transfer_api.api.FundsTransferApi;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000", "https://bjanes0.github.io"})
 public class AppApplication {
 	
 	private static FundsTransferApi apiInstance;
@@ -55,7 +55,16 @@ public class AppApplication {
 			e.printStackTrace();
 		}
 	}
-	
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("http://localhost:3000", "https://nasuru.github.io", "https://bjanes0.github.io");
+			}
+		};
+	}
 	
 	@RequestMapping("sendGift/{senderAccNum}+{senderName}+{senderAddr}+{senderCity}+{senderPostalCode}+{recipientState}+{recipientPrimaryAccNum}+{recipientCardExpiryDate}+{amount}")
 	public static ResponseEntity<String> sendGift(@PathVariable String senderAccNum, @PathVariable String senderName, @PathVariable String senderAddr, @PathVariable String senderCity, 
