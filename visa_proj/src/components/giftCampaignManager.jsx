@@ -67,12 +67,19 @@ class GiftManager extends Component {
                 }
                 campaign.endDate = new Date();
                 axios.put("http://localhost:8080/api/v1/gift_campaigns/"+campaignId, campaign, { headers: {Authorization: `Bearer ${jwt}`}})
-                .then(response => {
-                    if(response.data != null) {
-                        alert("Gift sent successfully!");
-                        this.reloadPage();
-                    }
-                });
+
+                const email = {
+                    to: campaign.recipientEmail,
+                    from: "visatouchgift@gmail.com",
+                    subject: campaign.giftCampaignName,
+                    name: "Person"
+                };
+                console.log(email);
+                console.log("got gere")
+
+                axios.post("http://localhost:3004/sendingEmail", email, { headers: {Authorization: `Bearer ${jwt}`}})
+                .then(alert("Gift sent successfully!"));
+                this.reloadPage();
             });
     }
 
@@ -97,7 +104,7 @@ class GiftManager extends Component {
                         <Button id="log_button" variant="secondary" onClick={this.deleteGift.bind(this, giftCampaign[i].giftCampaignId)} active>
                         Delete Gift Campaign
                         </Button>
-                        <Button onClick={this.sendGift.bind(this, giftCampaign[i].giftCampaignId)} className="m-1" id="log_button" variant="secondary" active>
+                        <Button id={giftCampaign[i].giftCampaignId + 1} onClick={this.sendGift.bind(this, giftCampaign[i].giftCampaignId)} className="m-1" id="log_button" variant="secondary" active>
                         Send Gift
                         </Button>
                     </Card.Text>
