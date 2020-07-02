@@ -1,5 +1,7 @@
 package com.visa.springboot.controller;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +85,7 @@ public class gift_campaigns_controller {
 	        giftCampaign.setRecipientEmail(giftCampaignDetails.getRecipientEmail());
 	        giftCampaign.setTotalGifters(giftCampaignDetails.getTotalGifters());
 	        giftCampaign.setGiftCampaignName(giftCampaignDetails.getGiftCampaignName());
+	        giftCampaign.setRecipientCardNumber(giftCampaignDetails.getRecipientCardNumber());
 	    
 	        final gift_campaigns updatedGiftCampaign = giftCampaignsRepository.save(giftCampaign);
 	        return ResponseEntity.ok(updatedGiftCampaign);
@@ -101,5 +104,23 @@ public class gift_campaigns_controller {
 	        Map<String, Boolean> response = new HashMap<>();
 	        response.put("deleted", Boolean.TRUE);
 	        return response;
+	    }
+	    
+	    public String convert(String s) {
+	        try {
+	            // Create MD5 Hash
+	            MessageDigest digest = MessageDigest.getInstance("MD5");
+	            digest.update(s.getBytes());
+	            byte messageDigest[] = digest.digest();
+
+	            // Create Hex String
+	            StringBuilder hexString = new StringBuilder();
+	            for (byte b : messageDigest) {
+	                hexString.append(Integer.toHexString(0xFF & b));
+	            }
+	            return hexString.toString();
+	        } catch (NoSuchAlgorithmException e) {
+	            throw new RuntimeException(e);
+	        }
 	    }
 }

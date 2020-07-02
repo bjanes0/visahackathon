@@ -37,6 +37,9 @@ public class gift_campaigns {
 	@Column(name = "giftcampaignname")
 	private String giftCampaignName;
 	
+	@Column(name = "recipientcardnumber")
+	private String recipientCardNumber;
+	
 	public gift_campaigns() {
 		super();
 	}
@@ -123,13 +126,25 @@ public class gift_campaigns {
 		this.recipientEmail = recipientEmail;
 	}
 	
+	public String getRecipientCardNumber() {
+		return recipientCardNumber;
+	}
+
+
+	public void setRecipientCardNumber(String recipientCardNumber) {
+		this.recipientCardNumber = recipientCardNumber;
+	}
+
+
 	@Override
 	public String toString() {
 		return "gift_campaigns [giftCampaignId=" + giftCampaignId + ", giftTotal=" + giftTotal + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", totalGifters=" + totalGifters + ", recipientEmail="
-				+ recipientEmail + ", giftCampaignName=" + giftCampaignName + "]";
+				+ recipientEmail + ", giftCampaignName=" + giftCampaignName + ", recipientCardNumber="
+				+ recipientCardNumber + "]";
 	}
-
+	
+	
 
 
 
