@@ -19,7 +19,7 @@ import com.visa.springboot.service.EmailService;
 
 @SpringBootApplication
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://bjanes0.github.io"})
 public class EmailServiceApplication {
 
 	@Autowired
